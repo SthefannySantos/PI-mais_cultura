@@ -4,7 +4,7 @@ Este repositório contém o código para o **Projeto Integrador** da **UNIVESP**
 
 ## 💡 Descrição do Projeto
 
-A aplicação tem como objetivo criar uma plataforma web onde usuários autenticados possam se inscrever em eventos culturais. Onde os usuários terão a possibilidade de se inscrever em eventos. Além disso, a plataforma permitirá o acompanhamento de eventos concluídos e histórico de inscrições.
+A aplicação tem como objetivo criar uma plataforma web onde usuários autenticados possam se inscrever em eventos culturais. Além disso, a plataforma permitirá o acompanhamento de eventos concluídos e histórico de inscrições.
 
 ### Funcionalidades Principais
 
