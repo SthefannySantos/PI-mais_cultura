@@ -1,5 +1,6 @@
 const DatabaseClient = require('../utils/database');
 const express = require('express');
+const bcrypt = require('bcrypt');
 
 const db = new DatabaseClient();
 
@@ -37,6 +38,35 @@ router.post('/createUser', async (req, res) => {
         return res.status(500).json({ message: 'Erro ao registrar usuário'});
     } 
 });
+
+router.post('/login', async (req, res) => {
+    const { email, senha } = req.body;
+
+    try {
+        const queryMail = 'SELECT * FROM tb_usuarios WHERE email = ?';
+
+        const validateEmail = await db.executar(queryMail, [email]);
+
+        if(validateEmail.length === 0){
+            return res.status(404).json({ message: 'Email não encontrado ou cadastrado'});
+        }
+
+        const userData = validateEmail[0]
+
+        console.log(userData)
+
+        const isValidate = await bcrypt.compare(senha, userData.senha);
+
+        if (isValidate){
+            res.status(200).json({ message: 'Seja bem-vindo ' + userData.nome });
+        } else {
+            res.status(404).json({ message: 'Não foi possivel completar o login'})
+        }
+    } catch (err) {
+        res.status(500).json({ message: 'não foi possivel realizar o login'});
+        
+    }
+})
 
 router.get('/userInfo/:id', async (req, res) => {
 
