@@ -18,7 +18,6 @@ router.post('/createUser', async (req, res) => {
         if (emailCheckResult.length > 0) {
             console.log('e-mail já cadastrado');
             return res.status(400).json({ message: "Email já cadastrado" });
-            
         }
 
         const saltRounds = 10;
