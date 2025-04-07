@@ -51,6 +51,25 @@
         }
     })
 
+    router.get('/eventsAvaliable', async (req, res) => {
+
+        try{
+            const sql = "SELECT * FROM tb_eventos WHERE concluido = 'N'";
+
+            const result = await db.executar(sql);
+            
+            if(result.length == 0){
+                res.status(404).json({ message: 'Não há eventos disponíveis'});
+            }
+
+            const data = result;
+
+            res.status(200).json(data)
+        } catch (err) {
+            res.status(500).json({ message: 'Não foi possível obter dados dos eventos'})
+        }
+    })
+
     router.get('/eventData/:id', async (req, res) => {
         const { id } = req.params;
 

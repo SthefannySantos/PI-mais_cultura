@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+* {
+    font-family:  "Merriweather", serif;
+}
+
+.menu-links{
+    font-weight: 600;
+}
+
+.menu-links:hover{
+    color: #ab38d8 !important;
+}
+
+.maiscultura-btn{
+    background-color: #ab38d8 !important;
+    border:  1px solid #ab38d8 !important;
+}
+
+.saibamais-btn{
+    background-color: #ab38d8;
+    border:  1px solid #ab38d8;
+}
+
+.saibamais-btn:hover{
+    background-color: #fcf9fd !important;
+    color: #ab38d8 !important;
+    border-color:#ab38d8 !important;
+}
+
+.carditems-description{
+    color: #4d4d4d;
+    font-size: .85rem;
+}
+
+.card-event:hover{
+    cursor: pointer;
+}
+
+.card-event:hover img{
+    opacity: 80%;
+}
+
+.card-event:hover h5 {
+    text-decoration: underline;
+    
+}
+
+

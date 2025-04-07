@@ -56,8 +56,16 @@ router.post('/login', async (req, res) => {
 
         const isValidate = await bcrypt.compare(senha, userData.senha);
 
+        const data = {
+            id: userData.id,
+            nome: userData.nome,
+            email: userData.email
+        }
+
+        console.log(data)
+
         if (isValidate){
-            res.status(200).json({ message: 'Seja bem-vindo ' + userData.nome });
+            res.status(200).json(data);
         } else {
             res.status(404).json({ message: 'Usuário ou senha incorretos'})
         }
