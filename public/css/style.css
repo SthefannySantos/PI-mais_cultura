@@ -15,11 +15,13 @@
 .maiscultura-btn{
     background-color: #ab38d8 !important;
     border:  1px solid #ab38d8 !important;
+    color: #ebebeb !important;
 }
 
 .saibamais-btn{
     background-color: #ab38d8;
     border:  1px solid #ab38d8;
+    color: #fcf9fd !important;
 }
 
 .saibamais-btn:hover{
@@ -46,4 +48,6 @@
     
 }
 
-
+.text-justify{
+    text-align: justify;
+}
