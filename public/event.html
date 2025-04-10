@@ -43,29 +43,27 @@
 
     <!-- Título e info -->
     <div class="mb-2">
-        <h1 class="fw-bold">Festival de Cultura Local</h1>
+        <h1 class="fw-bold" id="event-title"></h1>
         <p class="text-muted mb-1" style="font-size: 0.95rem;"> 
-            <i class="fa-regular fa-calendar me-1"></i> 20 de Abril &nbsp; | &nbsp;
-            <i class="bi bi-geo-alt me-1 mb-2"></i> Praça Central
+            <i class="fa-regular fa-calendar me-1"></i> <span id="event-date"></span>  &nbsp; | &nbsp;
+            <i class="bi bi-geo-alt me-1 mb-2"></i> <span id="event-location"></span> 
         </p>
             <p class="text-muted mb-0" style="font-size: 0.9rem;">
-                Organizado por: Ana Souza
+                Organizado por: <span id="event-creator"></span>
             </p>
     </div>
 
     <!-- Imagem do evento com altura limitada -->
     <div class="mb-4">
         <div class="ratio ratio-21x9 rounded overflow-hidden">
-        <img src="img/cinema.jpg" class="w-100 h-1  00 object-fit-cover" alt="Imagem do Evento">
+        <img id="event-category" src="" class="w-100 h-1  00 object-fit-cover" alt="Imagem do Evento">
         </div>
     </div>
 
     <!-- Descrição -->
     <div class="mb-2">
         <h5 class="fw-bolder">Sobre o evento</h5>
-        <p class="text-justify">
-            O Festival de Cultura Local é um espaço dedicado à valorização das expressões artísticas e tradições da nossa comunidade. Com apresentações musicais, danças, exposições, feiras e oficinas, o evento reúne artistas locais e visitantes em uma grande celebração da cultura regional. Participe, descubra novos talentos, troque experiências e viva a riqueza cultural que nos conecta e fortalece.
-            Um evento com shows ao vivo, comidas típicas e apresentações culturais. Participe e valorize a cultura da sua cidade!
+        <p class="text-justify" id="event-description">
         </p>
     </div>
 
@@ -76,16 +74,19 @@
         <div class="col-md-6 mb-3 mb-md-0">
             <p class="text-muted mb-0">
                 <i class="bi bi-people-fill"></i>
-                <strong>12 / 120 participantes confirmados</strong>
+                <strong><span id="event-subscribed"></span> / <span id="event-participantsLimit"></span> participantes confirmados</strong>
             </p>
         </div>
         <div class="col-md-6 text-md-end">
-            <a href="#" class="btn btn-lg maiscultura-btn">
+            <button href="#" class="btn btn-lg maiscultura-btn" id="subscribe-btn">
                 <i class="bi bi-check-circle-fill"></i> Inscreva-se
-            </a>
+            </button>
         </div>
     </div>
 </div>
+
+<script src="js/fetchEventData.js">
+</script>
 
 </body>
 </html>

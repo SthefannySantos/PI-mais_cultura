@@ -50,7 +50,7 @@ function goToEvent(id){
     if(!localStorage.id || !localStorage.nome || !localStorage.email){
         window.location.replace('login.html')
     } else{
-        console.log(id);
+        window.location.href = `event.html?id=${id}`;
     }
     
 }
