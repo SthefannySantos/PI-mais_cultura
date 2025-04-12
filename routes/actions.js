@@ -19,6 +19,25 @@ router.post('/subscribeEvent', async (req, res) => {
     }
 })
 
+router.get('/verifyUserSubscribed/:user/:event', async (req, res) => {
+    const { user, event } = req.params;
+
+    try {
+        const sql = 'SELECT * FROM tb_inscricoes WHERE usuario_id = ? AND evento_id = ?';
+        const rows = await db.executar(sql, [user, event]);
+
+        const data = rows;
+
+        if(data.length == 0){
+            return res.status(200).json({ message: 'Disponivel'});
+        } else {
+            return res.status(200).json({ message: 'Inscrito'})
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Não foi possível buscar usuário'});
+    }
+})
+
 router.delete('/cancelSubscription/:user/:event', async (req, res) => {
     const { user, event } = req.params;
 
