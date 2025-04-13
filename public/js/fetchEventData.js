@@ -68,27 +68,35 @@ async function verifyIfSubscribed(userInfo, eventInfo){
 
 
 async function subscribeEvent(){
-    const eventId = id;
 
-    try{
-        const userState = await verifyIfSubscribed(userId, eventId);
+    if(!localStorage.id || !localStorage.nome || !localStorage.email){
+        window.location.replace('login.html')
+    } else {
+        
+        const eventId = id;
 
-        if (userState == 'Disponivel'){
-            const response = await fetch('http://localhost:3000/action/subscribeEvent', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userId, eventId})
-            });
-
-            window.location.reload();
-        }else {
-            console.log('aoba')
+        try{
+            const userState = await verifyIfSubscribed(userId, eventId);
+    
+            if (userState == 'Disponivel'){
+                const response = await fetch('http://localhost:3000/action/subscribeEvent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ userId, eventId})
+                });
+    
+                window.location.reload();
+            }else {
+                console.log('aoba')
+            }
+        } catch (error) {
+            console.log('Usuário já inscrito');
         }
-    } catch (error) {
-        console.log('Usuário já inscrito');
+
     }
+
 }
 
 carregarEvento()

@@ -13,6 +13,9 @@ router.post('/subscribeEvent', async (req, res) => {
 
         const result = await db.executar(sql, [userId, eventId]);
 
+        const sqlUpdate = 'UPDATE tb_eventos SET total_inscritos = total_inscritos + 1 WHERE id = ?';
+        await db.executar(sqlUpdate, [eventId]);
+
         res.status(201).json({ message: 'Usuário inscrito com sucesso'});
     } catch (err) {
         res.status(500).json({message: 'Não foi possível se inscrever no evento'})
@@ -45,6 +48,9 @@ router.delete('/cancelSubscription/:user/:event', async (req, res) => {
         const sql = 'DELETE FROM tb_inscricoes WHERE usuario_id = ? AND evento_id = ?';
 
         const result = await db.executar(sql, [user, event]);
+
+        const sqlUpdate = 'UPDATE tb_eventos SET total_inscritos = total_inscritos - 1 WHERE id = ?';
+        await db.executar(sqlUpdate, [event]);
         
         res.status(200).json({ message: 'Inscrição cancelada com sucesso'})
 

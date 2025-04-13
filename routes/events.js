@@ -54,7 +54,7 @@
     router.get('/eventsAvaliable', async (req, res) => {
 
         try{
-            const sql = "SELECT * FROM tb_eventos WHERE concluido = 'N'";
+            const sql = "SELECT * FROM tb_eventos WHERE concluido = 'N' ORDER BY dt_evento desc";
 
             const result = await db.executar(sql);
             
