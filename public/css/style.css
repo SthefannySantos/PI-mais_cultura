@@ -30,6 +30,16 @@
     border-color:#ab38d8 !important;
 }
 
+.maiscultura-link{
+    color: #ab38d8 !important;
+    text-decoration: none;
+}
+
+.maiscultura-link:hover{
+    color: #2c2c2c !important;
+    text-decoration: underline;
+}
+
 .carditems-description{
     color: #4d4d4d;
     font-size: .85rem;
