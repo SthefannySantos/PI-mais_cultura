@@ -21,13 +21,13 @@
                     </button>
             
                     <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
-                        <a class="navbar-brand col-lg-3 me-0 fw-medium text-dark fw-bolder" href="#"><span style="color: #ab38d8; font-size: 1.55rem;">+</span>Cultura</a>
+                        <a class="navbar-brand col-lg-3 me-0 fw-medium text-dark fw-bolder" href="index.html"><span style="color: #ab38d8; font-size: 1.55rem;">+</span>Cultura</a>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item ">
                                 <a class="nav-link text-body-tertiary menu-links" href="#">Eventos Disponíveis</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-body-tertiary menu-links" href="#">Eventos Concluídos</a>
+                                <a class="nav-link text-body-tertiary menu-links" href="eventsFinished.html">Eventos Concluídos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-body-tertiary menu-links" href="#">Eventos Inscritos</a>
@@ -57,58 +57,7 @@
                 <h4 class="fw-bolder m-0 mt-4 mb-2">Eventos Concluídos</h4>
 
                 
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5 mb-2">
-
-                    <!-- <div class="col">
-                        <div class="card border-0 card-event">
-                            <img class="bd-placeholder-img card-img-top rounded" width="100%" height="215" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" src="img/danca.jpg"></img>
-                            <div class="card-body px-0">
-                                <h5 class="card-title mb-1">Ballet - Alice no País das Maravilhas</h5>
-                                <ul class="list-group list-group-flush px-1 pt-2 carditems-description">
-                                    <li class="list-group-item px-0 border-0 pb-1 pt-0 carditems-description">Organizado por: Prefeitura Municipal</li>
-                                    <li class="list-group-item px-0 border-0 pb-1 pt-0 carditems-description"><i class="fa-solid fa-calendar me-1"></i> 25 de abril às 10:20h</li>
-                                </ul>
-                                <div class="d-flex justify-content-between align-items-center mt-2">
-                                    <button type="button" class="btn btn-primary saibamais-btn">Saiba Mais</button>
-                                    <small class="text-muted"><i class="fa-solid fa-user"></i> 0/19</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card border-0 card-event">
-                            <img class="bd-placeholder-img card-img-top rounded" width="100%" height="215" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" src="img/danca.jpg"></img>
-                            <div class="card-body px-0">
-                                <h5 class="card-title mb-1">Ballet - Alice no País das Maravilhas</h5>
-                                <ul class="list-group list-group-flush px-1 pt-2 carditems-description">
-                                    <li class="list-group-item px-0 border-0 pb-1 pt-0 carditems-description">Organizado por: Prefeitura Municipal</li>
-                                    <li class="list-group-item px-0 border-0 pb-1 pt-0 carditems-description"><i class="fa-solid fa-calendar me-1"></i> 26 de abril às 18:30h</li>
-                                </ul>
-                                <div class="d-flex justify-content-between align-items-center mt-2">
-                                    <button type="button" class="btn btn-primary saibamais-btn">Saiba Mais</button>
-                                    <small class="text-muted"><i class="fa-solid fa-user"></i> 0/19</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card border-0 card-event">
-                            <img class="bd-placeholder-img card-img-top rounded" width="100%" height="215" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" src="img/musica.jpg"></img>
-                            <div class="card-body px-0">
-                                <h5 class="card-title mb-1">Apresentação de Natal</h5>
-                                <ul class="list-group list-group-flush px-1 pt-2 carditems-description">
-                                    <li class="list-group-item px-0 border-0 pb-1 pt-0 carditems-description">Organizado por: Projeto Retreta</li>
-                                    <li class="list-group-item px-0 border-0 pb-1 pt-0 carditems-description"><i class="fa-solid fa-calendar me-1"></i> 25 de abril às 10:20h</li>
-                                </ul>
-                                <div class="d-flex justify-content-between align-items-center mt-2">
-                                    <button type="button" class="btn btn-primary saibamais-btn">Saiba Mais</button>
-                                    <small class="text-muted"><i class="fa-solid fa-user"></i> 0/100</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5 mb-3" id="eventFinished-container">
                     
                 </div>
             
@@ -127,7 +76,8 @@
             </div>
         </div>
         </footer>
-        <script src="js/fetchEvents.js">
+        <script src="js/fetchEvents.js"></script>
+        <script src="js/fetchFinishedEvents.js">
         </script>
 
     </body>

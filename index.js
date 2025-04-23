@@ -18,5 +18,5 @@
     app.use('/action', actionRoutes); 
 
     app.listen(process.env.PORT, () => {
-        console.log('Server rodando porta 3000')
+        console.log(`Server rodando em http://localhost:${process.env.PORT}`)
     })
