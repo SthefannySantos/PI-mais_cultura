@@ -22,7 +22,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
             localStorage.setItem('id', data.id);
             localStorage.setItem('nome', data.nome);
             localStorage.setItem('email', data.email);
-            window.location.href = "/index.html"; // Redireciona para a página inicial
+            window.location.href = "/index"; // Redireciona para a página inicial
         } else {
             messageEl.textContent = data.message;
             messageEl.classList.remove('text-success');
@@ -36,7 +36,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
 function checkUserConnected(){
     if(localStorage.id && localStorage.nome && localStorage.email){
-        window.location.href='/index.html';
+        window.location.href='/index';
     } else{
         localStorage.clear()
     }

@@ -22,7 +22,7 @@ document.getElementById('cadForm').addEventListener('submit', async (event) => {
         if (response.ok) {
             messageEl.textContent = data.message;
             messageEl.classList.add('text-success');
-            window.location.href = "/login.html"; // Redireciona para a página de login (+seguro e n preciso fazer mais uma chamada no banco)
+            window.location.href = "/login"; // Redireciona para a página de login (+seguro e n preciso fazer mais uma chamada no banco)
         } else {
             messageEl.textContent = data.message;
             messageEl.classList.remove('text-success');
@@ -36,7 +36,7 @@ document.getElementById('cadForm').addEventListener('submit', async (event) => {
 
 function checkUserConnected(){
     if(localStorage.id && localStorage.nome && localStorage.email){
-        window.location.href='/login.html';
+        window.location.href='/login';
     } else{
         localStorage.clear()
     }

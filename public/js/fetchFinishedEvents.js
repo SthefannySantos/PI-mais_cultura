@@ -48,9 +48,9 @@ async function carregarEventosConcluidos() {
 
 function goToEvent(id){
     if(!localStorage.id || !localStorage.nome || !localStorage.email){
-        window.location.replace('login.html')
+        window.location.replace('/login')
     } else{
-        window.location.href = `event.html?id=${id}`;
+        window.location.href = `/event?id=${id}`;
     }
     
 }

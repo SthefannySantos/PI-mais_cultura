@@ -9,7 +9,7 @@
 
     const app = express();
 
-    app.use(express.static('public'));
+    app.use(express.static('public', { extensions: ['html'] }));
 
     app.use(express.json());
 

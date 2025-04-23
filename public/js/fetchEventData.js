@@ -70,7 +70,7 @@ async function verifyIfSubscribed(userInfo, eventInfo){
 async function subscribeEvent(){
 
     if(!localStorage.id || !localStorage.nome || !localStorage.email){
-        window.location.replace('login.html')
+        window.location.replace('/login')
     } else {
         
         const eventId = id;
