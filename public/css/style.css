@@ -33,6 +33,10 @@
     text-decoration: underline;
 }
 
+.hide-show-password{
+    color: #696969;
+}
+
 .saibamais-btn:hover{
     background-color: #fcf9fd !important;
     color: #ab38d8 !important;

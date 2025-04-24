@@ -41,3 +41,18 @@ function checkUserConnected(){
         localStorage.clear()
     }
 }
+
+function showHidePassword(){
+    const state = document.getElementById("password");
+    const icon = document.getElementById("icon-password");
+
+    if(state.type == "password"){
+        state.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        state.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
