@@ -24,6 +24,15 @@
     color: #fcf9fd !important;
 }
 
+.desconectar-link{
+    color: #ab38d8 !important;
+    font-weight: 700;
+}
+
+.desconectar-link:hover{
+    text-decoration: underline;
+}
+
 .saibamais-btn:hover{
     background-color: #fcf9fd !important;
     color: #ab38d8 !important;
