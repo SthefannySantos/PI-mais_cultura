@@ -2,15 +2,10 @@ async function carregarEventos() {
     try {
         const user = localStorage.getItem('id');
         const response = await fetch(`http://localhost:3000/action/userEventsSubscribed/${user}`);
-        console.log(`http://localhost:3000/action/userEventsSubscribed/${user}`)
         const eventos = await response.json();
 
         const container = document.getElementById('eventAvaliable-container');
         container.innerHTML = ''; // Limpa antes de preencher
-
-        const containerConcluidos = document.getElementById('eventFinished-container');
-
-        containerConcluidos.innerHTML = '';
 
         eventos.forEach(evento => {
             const dataEvento = new Date(evento.dt_evento);
@@ -29,7 +24,7 @@ async function carregarEventos() {
                 <div class="card border-0 card-event">
                     <img class="bd-placeholder-img card-img-top rounded" width="100%" height="215" src="img/${evento.categoria}.jpg" alt="${evento.titulo}">
                     <div class="card-body px-0">
-                        <h5 class="card-title mb-1" ${evento.concluido === 'N' ? `onclick="goToEvent(${evento.id})"` : ''}>${evento.titulo}</h5>
+                        <h5 class="card-title mb-1" onclick="goToEvent(${evento.id})" > ${evento.titulo}</h5>
                         <ul class="list-group list-group-flush px-1 pt-2 carditems-description">
                             <li class="list-group-item px-0 border-0 pb-1 pt-0 carditems-description">Organizado por: ${evento.organizador_evento}</li>
                             <li class="list-group-item px-0 border-0 pb-1 pt-0 carditems-description">
@@ -38,7 +33,7 @@ async function carregarEventos() {
                         </ul>
                         <div class="d-flex justify-content-between align-items-center mt-2">
                             ${evento.concluido === 'N' ? `
-                                <button type="button" class="btn btn-primary saibamais-btn" onclick="goToEvent(${evento.id})" id="eventId-${evento.id}">Cancelar Inscrição</button>
+                                <button type="button" class="btn btn-primary saibamais-btn" onclick="cancelUserSubscription(${evento.id})" id="eventId-${evento.id}">Cancelar Inscrição</button>
                             ` : `<span class="text-success">Evento concluído</span>`}
                             <small class="text-muted"><i class="fa-solid fa-user"></i> ${evento.total_inscritos}/${evento.limite_participantes}</small>
                         </div>
@@ -56,11 +51,28 @@ async function carregarEventos() {
 
 function goToEvent(id){
     if(!localStorage.id || !localStorage.nome || !localStorage.email){
-        window.location.replace('login.html')
+        window.location.replace('/login')
     } else{
         window.location.href = `/event?id=${id}`;
     }
     
+}
+
+async function cancelUserSubscription(id){
+    const userId = localStorage.id;
+    if(!userId || !localStorage.nome || !localStorage.email){
+        window.location.replace('login.html')
+    } else{
+        try{
+            const response = await fetch(`http://localhost:3000/action/cancelSubscription/${userId}/${id}`, {
+                method: 'DELETE',
+            });
+            window.location.reload();
+        } catch (err) {
+            console.log('Não foi possivel cancelar inscrição');
+            window.location.reload();
+        }
+    }
 }
 
 // Chamada quando a página carrega

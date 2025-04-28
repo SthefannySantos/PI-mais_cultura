@@ -20,7 +20,7 @@ function menu() {
                         <a class="nav-link text-body-tertiary menu-links" href="/eventsFinished">Eventos Concluídos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body-tertiary menu-links" href="#">Eventos Inscritos</a>
+                        <a class="nav-link text-body-tertiary menu-links" href="/subscribed">Eventos Inscritos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-body-tertiary menu-links" href="#">Sobre Nós</a>
