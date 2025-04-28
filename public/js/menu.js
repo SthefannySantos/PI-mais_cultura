@@ -14,7 +14,7 @@ function menu() {
                 <a class="navbar-brand col-lg-3 me-0 fw-medium text-dark fw-bolder" href="/"><span style="color: #ab38d8; font-size: 1.55rem;">+</span>Cultura</a>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item ">
-                        <a class="nav-link text-body-tertiary menu-links" href="#">Eventos Disponíveis</a>
+                        <a class="nav-link text-body-tertiary menu-links" href="/eventsAvaliable">Eventos Disponíveis</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-body-tertiary menu-links" href="/eventsFinished">Eventos Concluídos</a>
@@ -23,7 +23,7 @@ function menu() {
                         <a class="nav-link text-body-tertiary menu-links" href="/subscribed">Eventos Inscritos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body-tertiary menu-links" href="#">Sobre Nós</a>
+                        <a class="nav-link text-body-tertiary menu-links" href="/contact">Contato</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-body-tertiary menu-links desconectar-link" onclick="logout()" >Desconectar</a>

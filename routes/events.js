@@ -59,7 +59,7 @@
             const result = await db.executar(sql);
             
             if(result.length == 0){
-                return res.status(404).json({ message: 'Não há eventos disponíveis'});
+                return res.status(204).json({ message: 'Não há eventos disponíveis'});
             }
 
             const data = result;
@@ -78,7 +78,7 @@
             const result = await db.executar(sql);
             
             if(result.length == 0){
-                return res.status(404).json({ message: 'Não há eventos disponíveis'});
+                return res.status(204).json({ message: 'Não há eventos disponíveis'});
             }
 
             const data = result;
