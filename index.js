@@ -4,10 +4,13 @@
     const eventRoutes = require("./routes/events");
     const actionRoutes = require("./routes/actions");
     const dotenv = require('dotenv');
+    const cors = require('cors')
 
     dotenv.config();
 
     const app = express();
+
+    app.use(cors());
 
     app.use(express.static('public', { extensions: ['html'] }));
 

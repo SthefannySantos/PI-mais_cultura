@@ -28,6 +28,18 @@ async function carregarEvento() {
     const personLimit = eventData.limite_participantes;
     const concluido = eventData.concluido;
     const categoria = eventData.categoria;
+    const dataLimite = eventData.fim_inscricao;
+
+    const PeriodoFimInscricao = new Date(dataLimite);
+    PeriodoFimInscricao.setHours(23, 59, 59, 999);
+
+    const dataFimInscricao = PeriodoFimInscricao.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: "long",
+        year:"numeric"
+    });
+
+    const today = new Date();
 
     document.getElementById('event-title').innerText = eventData.titulo;
     document.getElementById('event-creator').innerText = eventData.organizador_evento;
@@ -37,15 +49,16 @@ async function carregarEvento() {
     document.getElementById('event-subscribed').innerText = subscribed;
     document.getElementById('event-participantsLimit').innerText = personLimit;
     document.getElementById('event-date').innerText = `${dataFormatada} às ${horaFormatada}`;
+    document.getElementById('date-limit').innerHTML = `Inscreva-se até <b>${dataFimInscricao}</b>   `;
 
     if (userState == 'Disponivel'){
         document.getElementById('subscribe-state').innerText = 'Inscreva-se';
     } else {
         document.getElementById('subscribe-state').innerText = 'Já inscrito';
     }
-    
 
-    if(subscribed == personLimit || concluido == 'S' || userState != 'Disponivel'){
+
+    if(subscribed == personLimit || concluido == 'S' || userState != 'Disponivel' || (today >= PeriodoFimInscricao)){
         document.getElementById('subscribe-btn').disabled = true;
     }
 
@@ -88,8 +101,6 @@ async function subscribeEvent(){
                 });
     
                 window.location.reload();
-            }else {
-                console.log('aoba')
             }
         } catch (error) {
             console.log('Usuário já inscrito');

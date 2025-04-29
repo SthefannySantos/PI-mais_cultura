@@ -52,13 +52,54 @@
                 <!-- Linha Separada para o Botão -->
                 <div class="row justify-content-center mt-4">
                     <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary maiscultura-btn w-100">Enviar</button>
+                    <button type="button" class="btn btn-primary maiscultura-btn w-100" onclick="enviarEmail()">Enviar</button>
                     </div>
                 </div>
             </div>
+            <footer class="text-body-secondary py-3">
+                <div class="container">
+                    <div>
+                        <p style="font-size: .75em;">&copy;2025 - Todos os direitos reservados</p>
+                    </div>
+                </div>
+            </footer>
 
             </div>
 
             <script src="js/menu.js"></script>
+
+            <script>
+                function enviarEmail() {
+                    const nome = document.getElementById('nome').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const assunto = document.getElementById('assunto').value.trim();
+                    const mensagem = document.getElementById('mensagem').value.trim();
+            
+                    if (!nome || !email || !assunto || !mensagem) {
+                        alert('Por favor, preencha todos os campos.');
+                        return;
+                    }
+            
+                    const destinatario = "s.jaianecel@gmail.com"; // <-- Troque pelo seu e-mail real!
+
+                    const assuntosMap = {
+                        "alterar_cadastro": "Alterar informações do meu cadastro",
+                        "divulgar_evento": "Gostaria de divulgar meu evento",
+                        "outros": "Outros(as)"
+                    };
+
+                    const assuntoFormatado = assuntosMap[assunto] || "Assunto desconhecido";
+            
+                    const assuntoEmail = encodeURIComponent("Assunto: " + assuntoFormatado);
+                    const corpoEmail = encodeURIComponent(
+                        "Nome: " + nome + "\n" +
+                        "E-mail: " + email + "\n\n" +
+                        "Mensagem:\n" + mensagem
+                    );
+            
+                    // Abre o cliente de e-mail
+                    window.location.href = `mailto:${destinatario}?subject=${assuntoEmail}&body=${corpoEmail}`;
+                }
+            </script>
         </body>
     </html>
