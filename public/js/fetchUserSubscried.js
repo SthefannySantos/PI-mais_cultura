@@ -3,7 +3,7 @@ checkUserConnected();
 async function carregarEventos() {
     try {
         const user = localStorage.getItem('id');
-        const response = await fetch(`http://localhost:3000/action/userEventsSubscribed/${user}`);
+        const response = await fetch(`/action/userEventsSubscribed/${user}`);
         const eventos = await response.json();
 
         const container = document.getElementById('eventAvaliable-container');
@@ -66,7 +66,7 @@ async function cancelUserSubscription(id){
         window.location.replace('login.html')
     } else{
         try{
-            const response = await fetch(`http://localhost:3000/action/cancelSubscription/${userId}/${id}`, {
+            const response = await fetch(`/action/cancelSubscription/${userId}/${id}`, {
                 method: 'DELETE',
             });
             window.location.reload();

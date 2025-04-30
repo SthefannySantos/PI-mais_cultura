@@ -1,6 +1,6 @@
 async function carregarEventos() {
     try {
-        const response = await fetch('http://localhost:3000/events/eventsAvaliable');
+        const response = await fetch('/events/eventsAvaliable');
         const eventos = await response.json();
 
         const container = document.getElementById('eventAvaliable-container');

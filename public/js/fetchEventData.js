@@ -6,7 +6,7 @@ async function carregarEvento() {
     
     try {
     const eventId = id;
-    const response = await fetch(`http://localhost:3000/events/eventData/${id}`);
+    const response = await fetch(`/events/eventData/${id}`);
     const eventData = await response.json();
 
     const dataEvento = new Date(eventData.dt_evento);
@@ -69,7 +69,7 @@ async function carregarEvento() {
 
 async function verifyIfSubscribed(userInfo, eventInfo){
     try {
-        const otherResponse = await fetch(`http://localhost:3000/action/verifyUserSubscribed/${userInfo}/${eventInfo}`);
+        const otherResponse = await fetch(`/action/verifyUserSubscribed/${userInfo}/${eventInfo}`);
         const eventstate = await otherResponse.json();
 
         const isSubscribed = eventstate.message;
@@ -92,7 +92,7 @@ async function subscribeEvent(){
             const userState = await verifyIfSubscribed(userId, eventId);
     
             if (userState == 'Disponivel'){
-                const response = await fetch('http://localhost:3000/action/subscribeEvent', {
+                const response = await fetch('/action/subscribeEvent', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
