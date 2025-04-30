@@ -59,7 +59,8 @@ router.post('/login', async (req, res) => {
         const data = {
             id: userData.id,
             nome: userData.nome,
-            email: userData.email
+            email: userData.email,
+            acesso: userData.nivel_acesso
         }
 
         console.log(data)

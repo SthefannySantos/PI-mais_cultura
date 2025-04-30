@@ -22,7 +22,10 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
             localStorage.setItem('id', data.id);
             localStorage.setItem('nome', data.nome);
             localStorage.setItem('email', data.email);
-            window.location.href = "/"; // Redireciona para a página inicial
+            localStorage.setItem('acesso', data.acesso);
+
+            const path = localStorage.getItem('acesso') == 1 ? '/admin' : '/'
+            window.location.href = path; // Redireciona para a página inicial ou adm
         } else {
             messageEl.textContent = data.message;
             messageEl.classList.remove('text-success');
