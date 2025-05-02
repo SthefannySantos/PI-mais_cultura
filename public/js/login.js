@@ -24,7 +24,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
             localStorage.setItem('email', data.email);
             localStorage.setItem('acesso', data.acesso);
 
-            const path = localStorage.getItem('acesso') == 1 ? '/admin' : '/'
+            const path = localStorage.getItem('acesso') == 1 ? '/admin/home' : '/'
             window.location.href = path; // Redireciona para a página inicial ou adm
         } else {
             messageEl.textContent = data.message;
@@ -38,8 +38,9 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 });
 
 function checkUserConnected(){
-    if(localStorage.id && localStorage.nome && localStorage.email){
-        window.location.href='/';
+    if(localStorage.id && localStorage.nome && localStorage.email && localStorage.acesso){
+        const path = localStorage.getItem('acesso') == 1 ? '/admin/home' : '/'
+        window.location.href=path;
     } else{
         localStorage.clear()
     }

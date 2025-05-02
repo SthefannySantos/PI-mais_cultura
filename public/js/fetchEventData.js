@@ -49,7 +49,8 @@ async function carregarEvento() {
     document.getElementById('event-subscribed').innerText = subscribed;
     document.getElementById('event-participantsLimit').innerText = personLimit;
     document.getElementById('event-date').innerText = `${dataFormatada} às ${horaFormatada}`;
-    document.getElementById('date-limit').innerHTML = `Inscreva-se até <b>${dataFimInscricao}</b>   `;
+    document.getElementById('date-limit').innerHTML = concluido == 'S' ? `` : `Inscreva-se até <b>${dataFimInscricao}</b>   `;
+    document.getElementById('event-status').innerHTML = concluido == 'S' ? `<h4  class="fw-bold">Evento Concluído</h4    >` : ``;
 
     if (userState == 'Disponivel'){
         document.getElementById('subscribe-state').innerText = 'Inscreva-se';
