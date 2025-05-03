@@ -23,8 +23,8 @@ async function carregarEventos() {
             const card = document.createElement('div');
             card.className = 'col';
             card.innerHTML = `
-                <div class="card border-0 card-event">
-                    <img class="bd-placeholder-img card-img-top rounded" width="100%" height="215" src="../img/${evento.categoria}.jpg" alt="${evento.titulo}">
+                <div class="card border-0 card-event p-2 pb-0">
+                    <img class="bd-placeholder-img card-img-top rounded rounded-2" width="100%" height="215" src="../img/${evento.categoria}.jpg" alt="${evento.titulo}">
                     <div class="card-body px-0">
                         <h5 class="card-title mb-1" onclick="goToEvent(${evento.id})" > ${evento.titulo}</h5>
                         <ul class="list-group list-group-flush px-1 pt-2 carditems-description">

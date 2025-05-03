@@ -39,5 +39,5 @@ document.addEventListener('DOMContentLoaded', menu);
 
 function logout() {
     localStorage.clear();
-    window.location.href = '/';
+    window.location.href = '/login';
 }

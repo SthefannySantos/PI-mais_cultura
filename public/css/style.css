@@ -60,6 +60,7 @@
 
 .card-event:hover{
     cursor: pointer;
+    filter: brightness(0.97); /* Deixa 10% mais escuro */    
 }
 
 .card-event:hover img{
