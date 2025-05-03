@@ -63,7 +63,7 @@ function goToEvent(id){
 async function cancelUserSubscription(id){
     const userId = localStorage.id;
     if(!userId || !localStorage.nome || !localStorage.email){
-        window.location.replace('login.html')
+        window.location.replace('/login')
     } else{
         try{
             const response = await fetch(`/action/cancelSubscription/${userId}/${id}`, {

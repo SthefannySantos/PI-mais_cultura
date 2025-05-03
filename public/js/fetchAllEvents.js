@@ -35,10 +35,10 @@ async function carregarEventos() {
                         </ul>
                         <div class="d-flex justify-content-between align-items-center mt-2">
                             ${evento.concluido === 'N' ? `
-                                <button type="button" class="btn btn-primary btn-success" onclick="cancelUserSubscription(${evento.id})" id="eventId-${evento.id}"> <i class="bi bi-check-circle-fill" style="margin-right: 5px"></i> Concluir evento</button>
+                                <button type="button" class="btn btn-primary btn-success" onclick="finishEvent(${evento.id})" id="eventId-${evento.id}"> <i class="bi bi-check-circle-fill" style="margin-right: 5px"></i> Concluir evento</button>
                             ` : `<span class="text-success">Evento concluído</span>`}
                             <small class="text-muted">
-                                <button type="button" class="btn btn-primary bg-secondary border-0 me-1 mb-1" onclick="cancelUserSubscription(${evento.id})" id="eventId-${evento.id}"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button type="button" class="btn btn-primary bg-secondary border-0 me-1 mb-1" onclick="editEvent(${evento.id})" id="eventId-${evento.id}"><i class="fa-solid fa-pen-to-square"></i></button>
                                 <button type="button" class="btn btn-primary bg-danger border-0 me-1 mb-1" onclick="deleteEvent(${evento.id})" id="eventId-${evento.id}"><i class="fa-solid fa-trash"></i></button>
                             </small>
                         </div>
@@ -63,18 +63,30 @@ function goToEvent(id){
     
 }
 
-async function cancelUserSubscription(id){
-    const userId = localStorage.id;
-    if(!userId || !localStorage.nome || !localStorage.email){
-        window.location.replace('login.html')
+function editEvent(id){
+    if(!localStorage.id || !localStorage.nome || !localStorage.email){
+        window.location.replace('/login')
     } else{
-        try{
-            const response = await fetch(`/action/cancelSubscription/${userId}/${id}`, {
-                method: 'DELETE',
+        window.location.href = `/admin/editEvent?id=${id}`;
+    }
+    
+}
+
+async function finishEvent(id){
+    if(!localStorage.id || !localStorage.nome || !localStorage.email){
+        window.location.replace('/login')
+    } else{
+        try {
+            const response = await fetch('/events/concluirEvento', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id })
             });
-            window.location.reload();
-        } catch (err) {
-            console.log('Não foi possivel cancelar inscrição');
+        } catch (error) {
+            console.log('Erro ao conectar ao servidor');
+        } finally {
             window.location.reload();
         }
     }
@@ -82,8 +94,8 @@ async function cancelUserSubscription(id){
 
 async function deleteEvent(id){
     const userId = localStorage.id;
-    if(!userId || !localStorage.nome || !localStorage.email){
-        window.location.replace('login.html')
+    if(!userId || !localStorage.nome || !localStorage.email || !localStorage.acesso == 1){
+        window.location.replace('/login')
     } else{
         try{
             const response = await fetch(`/events/deleteEvent/${id}`, {
@@ -98,7 +110,7 @@ async function deleteEvent(id){
 }
 
 function checkUserConnected(){
-    if(!localStorage.id || !localStorage.nome || !localStorage.email){
+    if(!localStorage.id || !localStorage.nome || !localStorage.email || !localStorage.acesso == 1){
         window.location.href='/login';
     } else {
         return

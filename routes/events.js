@@ -22,9 +22,9 @@
     })
 
     router.put('/editEvent', async (req, res) => {
-        const { titulo, desc, localEvento, categotia, organizador, dt_evento, fim_inscricao, maxParticipantes, id } = req.body;
+        const { titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes, id } = req.body;
 
-        const values = [titulo, desc, localEvento, categotia, organizador, dt_evento, fim_inscricao, maxParticipantes, id];
+        const values = [titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes, id];
 
         try {
             const sql = "UPDATE tb_eventos SET titulo = ?, descricao = ?, local_evento = ?, categoria = ?, organizador_evento = ?, dt_evento = ?, fim_inscricao = ?, limite_participantes = ? WHERE id = ?";
@@ -37,8 +37,8 @@
         }
     })
 
-    router.put('/concluirEvento/:id', async (req, res) => {
-        const { id } = req.params;
+    router.put('/concluirEvento/', async (req, res) => {
+        const { id } = req.body;
 
         try {
             const sql = "UPDATE tb_eventos SET concluido = 'S' WHERE id = ?";

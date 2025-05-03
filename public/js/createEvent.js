@@ -1,3 +1,5 @@
+checkUserConnected();
+
 document.getElementById('create-event').addEventListener('submit', async (event) => {
     event.preventDefault();
     
@@ -37,3 +39,11 @@ document.getElementById('create-event').addEventListener('submit', async (event)
         messageEl.classList.add('text-danger');
     }
 });
+
+function checkUserConnected(){
+    if(!localStorage.id || !localStorage.nome || !localStorage.email || !localStorage.acesso == 1){
+        window.location.href='/login';
+    } else {
+        return
+    }
+}
