@@ -6,9 +6,9 @@
     const router = express.Router();
 
     router.post('/createEvent', async (req, res) => {
-        const { titulo, desc, localEvento, categotia, organizador, dt_evento, fim_inscricao, maxParticipantes } = req.body;
+        const { titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes } = req.body;
 
-        const values = [titulo, desc, localEvento, categotia, organizador, dt_evento, fim_inscricao, maxParticipantes];
+        const values = [titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes];
 
         try {
             const sql = "INSERT INTO tb_eventos (titulo, descricao, local_evento, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -17,7 +17,7 @@
 
             res.status(201).json({ message: 'Evento criado com sucesso'});
         } catch (err) {
-            res.status(500).json({ message: 'Não foi possível registrar um evento'});
+            res.status(500).json({ message: 'Não foi possível registrar o evento'});
         }
     })
 

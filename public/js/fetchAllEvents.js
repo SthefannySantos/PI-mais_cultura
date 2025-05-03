@@ -39,7 +39,7 @@ async function carregarEventos() {
                             ` : `<span class="text-success">Evento concluído</span>`}
                             <small class="text-muted">
                                 <button type="button" class="btn btn-primary bg-secondary border-0 me-1 mb-1" onclick="cancelUserSubscription(${evento.id})" id="eventId-${evento.id}"><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button type="button" class="btn btn-primary bg-danger border-0 me-1 mb-1" onclick="cancelUserSubscription(${evento.id})" id="eventId-${evento.id}"><i class="fa-solid fa-trash"></i></button>
+                                <button type="button" class="btn btn-primary bg-danger border-0 me-1 mb-1" onclick="deleteEvent(${evento.id})" id="eventId-${evento.id}"><i class="fa-solid fa-trash"></i></button>
                             </small>
                         </div>
                     </div>
@@ -70,6 +70,23 @@ async function cancelUserSubscription(id){
     } else{
         try{
             const response = await fetch(`/action/cancelSubscription/${userId}/${id}`, {
+                method: 'DELETE',
+            });
+            window.location.reload();
+        } catch (err) {
+            console.log('Não foi possivel cancelar inscrição');
+            window.location.reload();
+        }
+    }
+}
+
+async function deleteEvent(id){
+    const userId = localStorage.id;
+    if(!userId || !localStorage.nome || !localStorage.email){
+        window.location.replace('login.html')
+    } else{
+        try{
+            const response = await fetch(`/events/deleteEvent/${id}`, {
                 method: 'DELETE',
             });
             window.location.reload();
