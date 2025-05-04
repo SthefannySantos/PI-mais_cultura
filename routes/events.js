@@ -133,7 +133,11 @@
         try{
             const sql = "DELETE FROM tb_eventos WHERE id = ?"
 
-            const result = db.executar(sql, [id]);
+            const result = await db.executar(sql, [id]);
+            
+            const sqlRemoveSubscription = "DELETE FROM tb_inscricoes WHERE evento_id = ?"
+
+            const resultRemSubscriptions = await db.executar(sqlRemoveSubscription, [id]);
 
             res.status(200).json({ message: 'Evento deletado com sucesso'})
         } catch (err) {
