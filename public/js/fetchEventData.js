@@ -83,7 +83,7 @@ async function verifyIfSubscribed(userInfo, eventInfo){
 
 async function subscribeEvent(){
 
-    if(!localStorage.id || !localStorage.nome || !localStorage.email){
+    if(!localStorage.id || !localStorage.nome || !localStorage.email || !localStorage.acesso){
         window.location.replace('/login')
     } else {
         

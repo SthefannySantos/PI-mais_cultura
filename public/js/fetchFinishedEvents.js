@@ -47,7 +47,7 @@ async function carregarEventosConcluidos() {
 };
 
 function goToEvent(id){
-    if(!localStorage.id || !localStorage.nome || !localStorage.email){
+    if(!localStorage.id || !localStorage.nome || !localStorage.email || !localStorage.acesso){
         window.location.replace('/login')
     } else{
         window.location.href = `/event?id=${id}`;

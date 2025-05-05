@@ -52,7 +52,7 @@ async function carregarEventos() {
 };
 
 function goToEvent(id){
-    if(!localStorage.id || !localStorage.nome || !localStorage.email){
+    if(!localStorage.id || !localStorage.nome || !localStorage.email || !localStorage.acesso){
         window.location.replace('/login')
     } else{
         window.location.href = `/event?id=${id}`;
@@ -62,7 +62,7 @@ function goToEvent(id){
 
 async function cancelUserSubscription(id){
     const userId = localStorage.id;
-    if(!userId || !localStorage.nome || !localStorage.email){
+    if(!userId || !localStorage.nome || !localStorage.email || !localStorage.acesso || localStorage.acesso == 1){
         window.location.replace('/login')
     } else{
         try{
@@ -78,7 +78,7 @@ async function cancelUserSubscription(id){
 }
 
 function checkUserConnected(){
-    if(!localStorage.id || !localStorage.nome || !localStorage.email){
+    if(!localStorage.id || !localStorage.nome || !localStorage.email || !localStorage.acesso || localStorage.acesso == 1){
         window.location.href='/login';
     } else {
         return

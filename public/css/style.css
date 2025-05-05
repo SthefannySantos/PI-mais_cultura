@@ -75,3 +75,13 @@
 .text-justify{
     text-align: justify;
 }
+
+.hide {
+    display: none !important;
+} 
+
+.loader-style{
+    width: 7em;
+    height: 7em;
+    color: #ab38d8;
+}

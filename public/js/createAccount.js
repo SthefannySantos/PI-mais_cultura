@@ -35,7 +35,7 @@ document.getElementById('cadForm').addEventListener('submit', async (event) => {
 });
 
 function checkUserConnected(){
-    if(localStorage.id && localStorage.nome && localStorage.email){
+    if(localStorage.id && localStorage.nome && localStorage.email && localStorage.acesso){
         window.location.href='/login';
     } else{
         localStorage.clear()
