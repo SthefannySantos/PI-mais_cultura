@@ -17,59 +17,73 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" aria-label="Thirteenth navbar example" id="menu-area">
     </nav>
+
+    <div class="d-flex justify-content-center align-items-center vh-100" id="loader-div">
+        <div class="spinner-border loader-style" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     
-    <div class="container mt-5">
+    <div class="container mt-5 hide" id="information-div">
 
-    <!-- Título e info -->
-    <div class="mb-2">
-        <h1 class="fw-bold" id="event-title"></h1>
-        <p class="text-muted mb-1" style="font-size: 0.95rem;"> 
-            <i class="fa-regular fa-calendar me-1"></i> <span id="event-date"></span>  &nbsp; | &nbsp;
-            <i class="bi bi-geo-alt me-1 mb-2"></i> <span id="event-location"></span> 
-        </p>
-            <p class="text-muted mb-0" style="font-size: 0.9rem;">
-                Organizado por: <span id="event-creator"></span>
+        <!-- Título e info -->
+        <div class="mb-2">
+            <h1 class="fw-bold" id="event-title"></h1>
+            <p class="text-muted mb-1" style="font-size: 0.95rem;"> 
+                <i class="fa-regular fa-calendar me-1"></i> <span id="event-date"></span>  &nbsp; | &nbsp;
+                <i class="bi bi-geo-alt me-1 mb-2"></i> <span id="event-location"></span> 
             </p>
-    </div>
-
-    <!-- Imagem do evento com altura limitada -->
-    <div class="mb-4">
-        <div class="ratio ratio-21x9 rounded overflow-hidden">
-        <img id="event-category" src="" class="w-100 h-1  00 object-fit-cover" alt="Imagem do Evento">
+                <p class="text-muted mb-0" style="font-size: 0.9rem;">
+                    Organizado por: <span id="event-creator"></span>
+                </p>
         </div>
-    </div>
 
-    <!-- Descrição -->
-    <div class="mb-2">
-        <h5 class="fw-bolder">Sobre o evento</h5>
-        <p class="text-justify" id="event-description">
-        </p>
-        <p class="text-justify" id="date-limit">
-        </p>
-        <p id="event-status" class="text-success"></p>
-    </div>
+        <!-- Imagem do evento com altura limitada -->
+        <div class="mb-4">
+            <div class="ratio ratio-21x9 rounded overflow-hidden">
+            <img id="event-category" src="" class="w-100 h-1  00 object-fit-cover" alt="Imagem do Evento">
+            </div>
+        </div>
 
-    <hr>
-
-    <!-- Participantes + Botão lado a lado -->
-    <div class="row align-items-center mb-5">
-        <div class="col-md-6 mb-3 mb-md-0">
-            <p class="text-muted mb-0">
-                <i class="bi bi-people-fill"></i>
-                <strong><span id="event-subscribed"></span> / <span id="event-participantsLimit"></span> participantes confirmados</strong>
+        <!-- Descrição -->
+        <div class="mb-2">
+            <h5 class="fw-bolder">Sobre o evento</h5>
+            <p class="text-justify" id="event-description">
             </p>
+            <p class="text-justify" id="date-limit">
+            </p>
+            <p id="event-status" class="text-success"></p>
         </div>
-        <div class="col-md-6 text-md-end">
-            <button onclick="subscribeEvent()" class="btn btn-lg maiscultura-btn" id="subscribe-btn">
-                <i class="bi bi-check-circle-fill"></i> <span id="subscribe-state">Inscreva-se</span>
-            </button>
+
+        <hr>
+
+        <!-- Participantes + Botão lado a lado -->
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <p class="text-muted mb-0">
+                    <i class="bi bi-people-fill"></i>
+                    <strong><span id="event-subscribed"></span> / <span id="event-participantsLimit"></span> participantes confirmados</strong>
+                </p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <button onclick="subscribeEvent()" class="btn btn-lg maiscultura-btn" id="subscribe-btn">
+                    <i class="bi bi-check-circle-fill"></i> <span id="subscribe-state">Inscreva-se</span>
+                </button>
+            </div>
         </div>
     </div>
-</div>
+
+    <script>
+        // Espera os scripts externos terminarem de carregar
+        setTimeout(() => {
+            document.getElementById('loader-div').classList.add('hide');
+            document.getElementById('information-div').classList.remove('hide');
+        }, 150);
+    </script>
+
 
 <script src="js/menu.js"></script>
-<script src="js/fetchEventData.js">
-</script>
+<script src="js/fetchEventData.js" onload="verificarScripts()"></script>
 
 </body>
 </html>

@@ -23,7 +23,7 @@
 
         <main>
 
-        <div class="album py-4 bg-white">
+        <div class="album bg-white">
 
             <div class="d-flex justify-content-center align-items-center vh-100" id="loader-div">
                 <div class="spinner-border loader-style" role="status">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             
-            <div class="container hide" id="information-div">
+            <div class="container hide py-4" id="information-div">
 
                 <div>
                     <h4 class="fw-bolder m-0 mt-1 mb-2">Eventos Disponíveis</h4>
@@ -71,7 +71,7 @@
                     setTimeout(() => {
                         document.getElementById('loader-div').classList.add('hide');
                         document.getElementById('information-div').classList.remove('hide');
-                    }, 300);
+                    }, 150);
                 }
             }
 

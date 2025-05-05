@@ -13,60 +13,78 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" aria-label="Thirteenth navbar example" id="menu-area">
             </nav>
 
-            <div class="container my-5">
-            <div class="row bg-white p-4 rounded shadow">
-                <h2 class="mb-4">Fale Conosco</h2>
-                <!-- Formulário Lado Esquerdo -->
-                <div class="col-md-6">
-                <form>
-                    <div class="mb-3">
-                    <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" required>
-                    </div>
-
-                    <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-
-                    <div class="mb-3">
-                    <label for="assunto" class="form-label">Como podemos ajudar?</label>
-                    <select class="form-select" id="assunto" name="assunto" required>
-                        <option value="">Selecione uma opção</option>
-                        <option value="alterar_cadastro">Alterar informações do meu cadastro</option>
-                        <option value="divulgar_evento">Gostaria de divulgar meu evento</option>
-                        <option value="outros">Outros(as)</option>
-                    </select>
-                    </div>
-                </form>
-                </div>
-
-                <!-- Textarea Lado Direito -->
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="mensagem" class="form-label">Mensagem</label>
-                        <textarea class="form-control" id="mensagem" name="mensagem" required style="min-height: 250px;"></textarea>
-                    </div>
-                </div>
-
-                <!-- Linha Separada para o Botão -->
-                <div class="row justify-content-center mt-4">
-                    <div class="col-md-4">
-                    <button type="button" class="btn btn-primary maiscultura-btn w-100" onclick="enviarEmail()">Enviar</button>
-                    </div>
+            <div class="d-flex justify-content-center align-items-center vh-100" id="loader-div">
+                <div class="spinner-border loader-style" role="status">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
-            <footer class="text-body-secondary py-3">
-                <div class="container">
-                    <div>
-                        <p style="font-size: .75em;">&copy;2025 - Todos os direitos reservados</p>
+
+            <div class="container py-4 hide" id="information-div">
+                <div class="row bg-white p-4 rounded shadow">
+                    <h2 class="mb-4">Fale Conosco</h2>
+                    <!-- Formulário Lado Esquerdo -->
+                    <div class="col-md-6">
+                    <form>
+                        <div class="mb-3">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                        </div>
+
+                        <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+
+                        <div class="mb-3">
+                        <label for="assunto" class="form-label">Como podemos ajudar?</label>
+                        <select class="form-select" id="assunto" name="assunto" required>
+                            <option value="">Selecione uma opção</option>
+                            <option value="alterar_cadastro">Alterar informações do meu cadastro</option>
+                            <option value="divulgar_evento">Gostaria de divulgar meu evento</option>
+                            <option value="outros">Outros(as)</option>
+                        </select>
+                        </div>
+                    </form>
+                    </div>
+
+                    <!-- Textarea Lado Direito -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="mensagem" class="form-label">Mensagem</label>
+                            <textarea class="form-control" id="mensagem" name="mensagem" required style="min-height: 250px;"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Linha Separada para o Botão -->
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-md-4">
+                        <button type="button" class="btn btn-primary maiscultura-btn w-100" onclick="enviarEmail()">Enviar</button>
+                        </div>
                     </div>
                 </div>
-            </footer>
+                <footer class="text-body-secondary py-3">
+                    <div class="container">
+                        <div>
+                            <p style="font-size: .75em;">&copy;2025 - Todos os direitos reservados</p>
+                        </div>
+                    </div>
+                </footer>
 
             </div>
 
             <script src="js/menu.js"></script>
+
+            <script>
+                // Espera os dois scripts externos terminarem de carregar
+                verificarScripts()
+            
+                function verificarScripts() {
+                    setTimeout(() => {
+                        document.getElementById('loader-div').classList.add('hide');
+                        document.getElementById('information-div').classList.remove('hide');
+                    }, 150);
+                }
+            </script>
 
             <script>
                 function enviarEmail() {
