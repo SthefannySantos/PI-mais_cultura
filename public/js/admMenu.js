@@ -17,12 +17,14 @@ function menu() {
                         <a class="nav-link text-body-tertiary menu-links" href="/admin/createEvent">Criar Evento</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body-tertiary menu-links desconectar-link" onclick="logout()" >Desconectar</a>
+                        <span id="user-option"></span>
                     </li>
                 </ul>
             </div>
         </div>
     `
+
+    textMenu()
     
 }
 
@@ -31,4 +33,17 @@ document.addEventListener('DOMContentLoaded', menu);
 function logout() {
     localStorage.clear();
     window.location.href = '/login';
+}
+
+function login() {
+    localStorage.clear();
+    window.location.href = '/login';
+}
+
+function textMenu(){
+    if(localStorage.id && localStorage.nome && localStorage.email && localStorage.acesso == 1){
+        document.getElementById("user-option").innerHTML = `<a class="nav-link text-body-tertiary menu-links desconectar-link" onclick="logout()" >Desconectar</a>`;
+    } else {
+        document.getElementById("user-option").innerHTML = `<a class="nav-link text-body-tertiary menu-links desconectar-link" onclick="login()" >Conectar</a>`;
+    }
 }
