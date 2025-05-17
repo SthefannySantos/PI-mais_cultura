@@ -13,60 +13,67 @@
         <div class="container mt-5 justify-content">
             <h2 class="mb-4">Cadastro de Evento</h2>
             <form id="create-event">
-            <div class="mb-3">
-                <label for="titulo" class="form-label">Título</label>
-                <input type="text" class="form-control" id="titulo" name="titulo" maxlength="45" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="local" class="form-label">Local</label>
-                <input type="text" class="form-control" id="local" name="local" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="organizador" class="form-label">Organizador</label>
-                <input type="text" class="form-control" id="organizador" name="organizador" required>
-            </div>
-
-            <div class="row px-0">
-                <div class="col-12 col-md-6 mb-3 mt-1">
-                    <label for="data" class="form-label">Data do Evento</label>
-                    <input type="datetime-local" class="form-control" id="data" name="data" required>
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" maxlength="45" required>
                 </div>
 
-                <div class="col-12 col-md-6 mb-3 mt-1">
-                    <label for="fim-inscricao" class="form-label">Fim inscrição</label>
-                    <input type="date" class="form-control" id="fim-inscricao" name="fim-inscricao" required>
-                </div>
-            </div>
-
-            <div class="row px-0">
-                <div class="col-12 col-md-6 mb-3 mt-1">
-                    <label for="categoria" class="form-label">Categoria</label>
-                    <select class="form-select" id="categoria" name="categoria" required>
-                        <option value="" selected disabled>Selecione uma categoria</option>
-                        <option value="teatro">Teatro</option>
-                        <option value="musica">Música</option>
-                        <option value="danca">Dança</option>
-                        <option value="cinema">Cinema</option>
-                        <option value="literatura">Literatura</option>
-                    </select>
+                <div class="mb-3">
+                    <label for="local" class="form-label">Local</label>
+                    <input type="text" class="form-control" id="local" name="local" required>
                 </div>
 
-                <div class="col-12 col-md-6 mb-3 mt-1">
-                    <label for="total" class="form-label">Limite de Participantes</label>
-                    <input type="number" class="form-control" id="total" name="total" min="1" step="1" required>
+                <div class="mb-3">
+                    <label for="organizador" class="form-label">Organizador</label>
+                    <input type="text" class="form-control" id="organizador" name="organizador" required>
                 </div>
-            </div> 
 
-            <div class="mb-3">
-                <label for="descricao" class="form-label">Descrição</label>
-                <textarea class="form-control" id="descricao" name="descricao" rows="4" maxlength="500" required></textarea>
-            </div>
-            <div id="message" class="text-center my-2"></div>
-            <div class="text-center">
-                <button type="submit" class="btn maiscultura-btn mb-3 w-50 ">Enviar</button>
-            </div>
+                <div class="row px-0">
+                    <div class="col-12 col-md-6 mb-3 mt-1">
+                        <label for="data" class="form-label">Data do Evento</label>
+                        <input type="datetime-local" class="form-control" id="data" name="data" required>
+                    </div>
+
+                    <div class="col-12 col-md-6 mb-3 mt-1">
+                        <label for="fim-inscricao" class="form-label">Fim inscrição</label>
+                        <input type="date" class="form-control" id="fim-inscricao" name="fim-inscricao" required>
+                    </div>
+                </div>
+
+                <div class="row px-0">
+                    <div class="col-12 col-md-6 mb-3 mt-1">
+                        <label for="categoria" class="form-label">Categoria</label>
+                        <select class="form-select" id="categoria" name="categoria" required>
+                            <option value="" selected disabled>Selecione uma categoria</option>
+                            <option value="teatro">Teatro</option>
+                            <option value="musica">Música</option>
+                            <option value="danca">Dança</option>
+                            <option value="cinema">Cinema</option>
+                            <option value="literatura">Literatura</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-6 mb-3 mt-1">
+                        <label for="total" class="form-label">Limite de Participantes</label>
+                        <input type="number" class="form-control" id="total" name="total" min="1" step="1" required>
+                    </div>
+                </div> 
+
+                <div class="mb-3">
+                    <label for="descricao" class="form-label">Descrição</label>
+                    <textarea class="form-control" id="descricao" name="descricao" rows="4" maxlength="500" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="imagem" class="form-label">Foto/Capa do Evento</label>
+                    <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
+                </div>
+
+                <div id="message" class="text-center my-2"></div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn maiscultura-btn mb-3 w-50 ">Enviar</button>
+                </div>
             </form>
 
         <script src="../js/createEvent.js"></script>

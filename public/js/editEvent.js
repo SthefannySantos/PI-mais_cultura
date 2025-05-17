@@ -62,15 +62,29 @@ document.getElementById('edit-event').addEventListener('submit', async (event) =
     const categoria = document.getElementById('categoria').value;
     const maxParticipantes = document.getElementById('total').value;
     const desc = document.getElementById('descricao').value;
+    const imagem = document.getElementById('imagem').files[0]; // nova imagem
+
     const messageEl = document.getElementById('message');
-    
+
+    const formData = new FormData();
+    formData.append('titulo', titulo);
+    formData.append('desc', desc);
+    formData.append('localEvento', localEvento);
+    formData.append('categoria', categoria);
+    formData.append('organizador', organizador);
+    formData.append('dt_evento', dt_evento);
+    formData.append('fim_inscricao', fim_inscricao);
+    formData.append('maxParticipantes', maxParticipantes);
+    formData.append('id', id);
+
+    if (imagem) {
+        formData.append('imagem', imagem);
+    }
+
     try {
         const response = await fetch('/events/editEvent', {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes, id })
+            body: formData
         });
         
         const dataResponse = await response.json();

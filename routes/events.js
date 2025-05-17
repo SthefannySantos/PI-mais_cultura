@@ -5,37 +5,77 @@
 
     const router = express.Router();
 
-    router.post('/createEvent', async (req, res) => {
-        const { titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes } = req.body;
+    const multer = require('multer');
+    const path = require('path');
+    const fs = require('fs'); // manipular arquivos
 
-        const values = [titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes];
+    // Configuração do multer - destino e nome do arquivo
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, path.join(__dirname, '..', 'uploads'));
+        },
+        filename: function (req, file, cb) {
+            const ext = path.extname(file.originalname);
+            const filename = file.fieldname + '-' + Date.now() + ext;
+            cb(null, filename);
+        }
+    });
+
+    const upload = multer({ storage });
+
+    router.post('/createEvent', upload.single('imagem'), async (req, res) => {
+        const { titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes } = req.body;
+        const imagem_capa = req.file ? `/uploads/${req.file.filename}` : null;
 
         try {
-            const sql = "INSERT INTO tb_eventos (titulo, descricao, local_evento, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            const sql = `INSERT INTO tb_eventos (titulo, descricao, local_evento, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, capa_evento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-            const result = await db.executar(sql, values);
+            const values = [titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes, imagem_capa];
 
-            res.status(201).json({ message: 'Evento criado com sucesso'});
+            await db.executar(sql, values);
+
+            res.status(201).json({ message: 'Evento criado com sucesso' });
         } catch (err) {
-            res.status(500).json({ message: 'Não foi possível registrar o evento'});
+            console.error(err);
+            res.status(500).json({ message: 'Não foi possível registrar o evento' });
         }
-    })
+    }); 
 
-    router.put('/editEvent', async (req, res) => {
+    router.put('/editEvent', upload.single('imagem'), async (req, res) => {
         const { titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes, id } = req.body;
 
-        const values = [titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes, id];
+        let values = [titulo, desc, localEvento, categoria, organizador, dt_evento, fim_inscricao, maxParticipantes];
+        let imagemSql = '';
 
         try {
-            const sql = "UPDATE tb_eventos SET titulo = ?, descricao = ?, local_evento = ?, categoria = ?, organizador_evento = ?, dt_evento = ?, fim_inscricao = ?, limite_participantes = ? WHERE id = ?";
+            if (req.file) {
+                // Buscar imagem anterior
+                const buscaSql = 'SELECT capa_evento FROM tb_eventos WHERE id = ?';
+                const [resultado] = await db.executar(buscaSql, [id]);
 
-            const result = await db.executar(sql, values);
+                if (resultado && resultado.capa_evento) {
+                    const caminhoAntigo = path.join(__dirname, '..', resultado.capa_evento);
+                    if (fs.existsSync(caminhoAntigo)) {
+                        fs.unlinkSync(caminhoAntigo); // apaga a imagem antiga
+                    }
+                }
 
-            res.status(200).json({ message: 'Evento atualizado com sucesso'});
+                imagemSql = ', capa_evento = ?';
+                values.push(`/uploads/${req.file.filename}`);
+            }
+
+            values.push(id); // ID sempre por último
+
+            let sql = `UPDATE tb_eventos SET titulo = ?, descricao = ?, local_evento = ?, categoria = ?, organizador_evento = ?, dt_evento = ?, fim_inscricao = ?, limite_participantes = ?${imagemSql} WHERE id = ?`;
+
+            await db.executar(sql, values);
+
+            res.status(200).json({ message: 'Evento atualizado com sucesso' });
         } catch (err) {
-            res.status(500).json({ message: 'Não foi possível atualizar o evento'});
+            console.error(err);
+            res.status(500).json({ message: 'Não foi possível atualizar o evento' });
         }
-    })
+    });
 
     router.put('/concluirEvento/', async (req, res) => {
         const { id } = req.body;
@@ -130,19 +170,31 @@
     router.delete('/deleteEvent/:id', async (req, res) => {
         const { id } = req.params;
 
-        try{
-            const sql = "DELETE FROM tb_eventos WHERE id = ?"
+        try {
+            // Buscar a imagem antes de deletar o evento
+            const buscaSql = 'SELECT capa_evento FROM tb_eventos WHERE id = ?';
+            const [resultado] = await db.executar(buscaSql, [id]);
 
-            const result = await db.executar(sql, [id]);
-            
-            const sqlRemoveSubscription = "DELETE FROM tb_inscricoes WHERE evento_id = ?"
+            if (resultado && resultado.capa_evento) {
+                const caminhoImagem = path.join(__dirname, '..', resultado.capa_evento);
+                if (fs.existsSync(caminhoImagem)) {
+                    fs.unlinkSync(caminhoImagem); // apaga a imagem
+                }
+            }
 
-            const resultRemSubscriptions = await db.executar(sqlRemoveSubscription, [id]);
+            // Remove evento
+            const sql = 'DELETE FROM tb_eventos WHERE id = ?';
+            await db.executar(sql, [id]);
 
-            res.status(200).json({ message: 'Evento deletado com sucesso'})
+            // Remove inscrições relacionadas
+            const sqlRemoveSubscription = 'DELETE FROM tb_inscricoes WHERE evento_id = ?';
+            await db.executar(sqlRemoveSubscription, [id]);
+
+            res.status(200).json({ message: 'Evento deletado com sucesso' });
         } catch (err) {
-            res.status(500).json({ message: 'Erro ao excluir evento'})
+            console.error(err);
+            res.status(500).json({ message: 'Erro ao excluir evento' });
         }
-    })
+    });
 
     module.exports = router

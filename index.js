@@ -4,7 +4,8 @@
     const eventRoutes = require("./routes/events");
     const actionRoutes = require("./routes/actions");
     const dotenv = require('dotenv');
-    const cors = require('cors')
+    const cors = require('cors');
+    const path = require('path');
 
     dotenv.config();
 
@@ -13,6 +14,7 @@
     app.use(cors());
 
     app.use(express.static('public', { extensions: ['html'] }));
+    app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
     app.use(express.json());
 

@@ -41,10 +41,12 @@ async function carregarEvento() {
 
     const today = new Date();
 
+    const imgPath = eventData.capa_evento ?  `${eventData.capa_evento}` : `img/${categoria}.jpg` 
+
     document.getElementById('event-title').innerText = eventData.titulo;
     document.getElementById('event-creator').innerText = eventData.organizador_evento;
     document.getElementById('event-location').innerText = eventData.local_evento;
-    document.getElementById('event-category').src = `img/${categoria}.jpg`;
+    document.getElementById('event-category').src = imgPath;
     document.getElementById('event-description').innerHTML = eventData.descricao;
     document.getElementById('event-subscribed').innerText = subscribed;
     document.getElementById('event-participantsLimit').innerText = personLimit;
