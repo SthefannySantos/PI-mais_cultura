@@ -1,5 +1,6 @@
 const DatabaseClient = require('../utils/database');
 const express = require('express');
+const nodemailer = require('nodemailer');
 
 const db = new DatabaseClient();
 
@@ -78,5 +79,38 @@ router.get('/userEventsSubscribed/:id', async (req, res) => {
         res.status(404).json({ message: 'Não foi possível acessar os eventos'});
     }
 })
+
+router.post('/contact', async (req, res) => {
+    const { name, email, contactType, subject, message } = req.body;
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASSWORD,
+        },
+    });
+
+    const mailOptions = {
+        from: `"${name}" <${email}>`,
+        to: process.env.EMAIL_USER, // seu próprio email
+        subject: `[Contato] ${contactType}: ${subject}`,
+        text: `
+        Nome: ${name}
+        Email: ${email}
+        Tipo de contato: ${contactType}
+        Assunto: ${subject}
+        Mensagem: ${message}
+        `,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        res.status(200).json({ message: 'Mensagem enviada com sucesso!' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Erro ao enviar mensagem' });
+    }
+});
 
 module.exports = router;
