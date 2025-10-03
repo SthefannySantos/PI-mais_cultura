@@ -39,7 +39,9 @@ router.post('/createUser', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const { email, senha } = req.body;
+    const { email, password } = req.body;
+
+    console.log(email, password)
 
     try {
         const queryMail = 'SELECT * FROM tb_usuarios WHERE email = ?';
@@ -49,21 +51,20 @@ router.post('/login', async (req, res) => {
         if(validateEmail.length === 0){
             return res.status(404).json({ message: 'Email não encontrado ou cadastrado'});
         }
-
-        const userData = validateEmail[0]
-
-        console.log(userData)
-
-        const isValidate = await bcrypt.compare(senha, userData.senha);
+    
+        const userData = validateEmail[0];
+        
+        const isValidate = await bcrypt.compare(password, userData.senha);
+        
+        const url = userData.nivel_acesso == 2 ? '/admin/home' : '/';
 
         const data = {
             id: userData.id,
             nome: userData.nome,
             email: userData.email,
-            acesso: userData.nivel_acesso
+            acesso: userData.nivel_acesso,
+            url: url
         }
-
-        console.log(data)
 
         if (isValidate){
             res.status(200).json(data);
