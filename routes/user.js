@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/createUser', async (req, res) => {
 
-    const { nome, email, senha } = req.body;
+    const { name, email, password } = req.body;
 
     try {
 
@@ -16,15 +16,14 @@ router.post('/createUser', async (req, res) => {
         const emailCheckResult = await db.executar(emailCheckQuery, [email]);
 
         if (emailCheckResult.length > 0) {
-            console.log('e-mail já cadastrado');
             return res.status(400).json({ message: "Email já cadastrado" });
         }
 
         const saltRounds = 10;
 
-        const senhaHash = await bcrypt.hash(senha, saltRounds)
+        const hashedPassword = await bcrypt.hash(password, saltRounds)
 
-        const values = [nome, email, senhaHash];
+        const values = [name, email, hashedPassword];
         
         const query = "INSERT INTO tb_usuarios (nome, email, senha, nivel_acesso, ativo) VALUES (?, ?, ?, '0', 'S')";
 
@@ -40,8 +39,6 @@ router.post('/createUser', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
-
-    console.log(email, password)
 
     try {
         const queryMail = 'SELECT * FROM tb_usuarios WHERE email = ?';
