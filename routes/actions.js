@@ -80,6 +80,40 @@ router.get('/userEventsSubscribed/:id', async (req, res) => {
     }
 })
 
+router.get('/artistEvents/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        // 1. Verifica se o usuário é artista
+        const artistaSql = 'SELECT nome_artista FROM tb_artistas WHERE id_user = ?';
+        const artistas = await db.executar(artistaSql, [id]);
+
+        let nomeArtista = null;
+        if (artistas.length > 0) {
+            nomeArtista = artistas[0].nome_artista;
+        }
+
+        // 2. Busca eventos organizados pelo artista (se existir)
+        let eventos = [];
+        if (nomeArtista) {
+            const eventosSql = 'SELECT * FROM tb_eventos WHERE organizador_evento = ?';
+            eventos = await db.executar(eventosSql, [nomeArtista]);
+        }
+
+        // 3. Busca solicitações feitas pelo usuário
+        const solicitacoesSql = 'SELECT * FROM tb_solicitacoes WHERE id_user = ?';
+        const solicitacoes = await db.executar(solicitacoesSql, [id]);
+
+        // 4. Retorna tudo junto
+        res.status(200).json({ eventos, solicitacoes });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Erro ao acessar eventos ou solicitações' });
+    }
+});
+
+
 router.post('/contact', async (req, res) => {
     const { name, email, contactType, subject, message } = req.body;
 
@@ -110,6 +144,29 @@ router.post('/contact', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Erro ao enviar mensagem' });
+    }
+});
+
+router.get('/getArtist/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const sql = 'SELECT a.id AS artista_id FROM tb_artistas a JOIN tb_solicitacoes s ON a.id_user = s.id_user WHERE s.id = ?';
+
+        const result = await db.executar(sql, [id]);
+
+        if(result.length == 0){
+            return res.status(404).json({ message: 'Não foi possível encontrar o artista'});
+        }
+
+        console.log(result)
+
+        const artistId = result[0].artista_id;
+
+        res.status(200).json(artistId);
+
+    } catch (err) {
+        res.status(404).json({ message: 'Não foi possível encontrar o artista'});
     }
 });
 
