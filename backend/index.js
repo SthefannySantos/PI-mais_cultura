@@ -6,6 +6,7 @@
     const dotenv = require('dotenv');
     const cors = require('cors');
     const path = require('path');
+    const https = require('https');
 
     dotenv.config();
 
@@ -22,6 +23,11 @@
     app.use('/events', eventRoutes); 
     app.use('/action', actionRoutes); 
 
-    app.listen(process.env.PORT, '0.0.0.0', () => {
-        console.log(`Server rodando em http://localhost:${process.env.PORT}`)
-    })
+    const sslOptions = {
+    key: fs.readFileSync('/etc/letsencrypt/live/maisecultura.com.br/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/maisecultura.com.br/fullchain.pem')
+};
+
+https.createServer(sslOptions, app).listen(process.env.PORT, '0.0.0.0', () => {
+    console.log(`Backend rodando em https://localhost:${process.env.PORT}`);
+});
