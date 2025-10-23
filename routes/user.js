@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
         
         const isValidate = await bcrypt.compare(password, userData.senha);
         
-        const url = userData.nivel_acesso == 2 ? '/admin/home' : '/';
+        const url = userData.nivel_acesso == 2 ? '/admin/' : '/';
 
         const data = {
             id: userData.id,
