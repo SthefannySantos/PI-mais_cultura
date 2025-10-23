@@ -29,7 +29,7 @@ const Card = ({ evento }) => {
 
     return(
         <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover">
-            <img className="" height="" src={imgPath} alt={""} />
+            <img className="" height="" style={{maxHeight: '260px'}} src={imgPath} alt={""} />
     
             {/* Tag da categoria */}
             <span className="position-absolute top-0 end-0 m-3 rounded-pill px-2 text-white fw-bold"
