@@ -170,4 +170,27 @@ router.get('/getArtist/:id', async (req, res) => {
     }
 });
 
+router.get('/getArtistProfile/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const sql = 'SELECT id FROM tb_artistas WHERE id_user = ?';
+
+        const result = await db.executar(sql, [id]);
+
+        if(result.length == 0){
+            return res.status(404).json({ message: 'Não foi possível encontrar o artista'});
+        }
+
+        console.log(result[0])
+
+        const artistId = result[0].id;
+
+        res.status(200).json(artistId);
+
+    } catch (err) {
+        res.status(404).json({ message: 'Não foi possível encontrar o artista'});
+    }
+});
+
 module.exports = router;

@@ -1,0 +1,45 @@
+body{
+    --mais-cultura-gradient-bg: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+    --mais-cultura-finished-color: #198754;
+     --card-shadow-md: 0 4px 12px rgba(139, 92, 246, 0.15);
+     --location-color: #8B5CF6;
+}
+
+* {
+    font-family: var(--font-geist-sans);
+}
+
+.mais-cultura-gradient-text{
+    background: var(--mais-cultura-gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.loader-style{
+    width: 7em;
+    height: 7em;
+    color:  #ac2ebd;
+    font-weight: bolder;
+    border-width: 0.4em;
+}
+
+.cultura-card {
+  border-radius: 16px;
+  box-shadow: var(--card-shadow-md);
+  border: none;
+  overflow: hidden;
+}
+
+.location-card {
+  color: #FFF;
+  background-color: var(--location-color);
+}
+
+.title-blur{
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), /* sombra principal */
+    0 0 5px rgba(26, 25, 25, 0.3);     /* leve brilho */
+}

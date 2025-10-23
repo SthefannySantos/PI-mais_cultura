@@ -1,0 +1,58 @@
+'use client'
+
+import "@/styles/effects.css";
+import { backendUrl } from "@/lib/api";
+
+import { useRouter } from 'next/navigation';
+
+const formatarData = (isoString) => {
+  const data = new Date(isoString);
+  return data.toLocaleString("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+};
+
+const categories = {
+    'musica': 'Música', 'danca': 'Dança', 'cinema': 'cinema', 'teatro': 'Teatro', 'literatura': 'Literatura'
+};
+
+
+const CardSolicitation = ({ evento }) => {
+
+    const router = useRouter();
+
+    const imgPath = evento.capa_evento ? `${backendUrl}${evento.capa_evento}` : `/events-categories/${evento.categoria}.jpg`;
+
+    return(
+        <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover">
+            <img className="" height="" src={imgPath} alt={""} />
+    
+            {/* Tag da categoria */}
+            <span className="position-absolute top-0 end-0 m-3 rounded-pill px-2 text-white fw-bold"
+                style={{ background: 'var(--mais-cultura-gradient-bg)' }}>
+                {categories[evento.categoria]?.toUpperCase()}
+            </span>
+            
+            <div className="card-body mx-1" >
+                <h5 className="card-title mb-1" > {evento.titulo} </h5>
+                <ul className="list-group list-group-flush my-1">
+                    <li className="list-group-item border-0 p-0 mb-1 text-muted">
+                        <i className="fa-regular fa-calendar me-1" aria-hidden="true"></i> {formatarData(evento.dt_evento)}
+                    </li>   
+                </ul>
+                
+                <button type="button" aria-label={`Saiba mais sobre o evento`} className="btn w-100 text-white rounded-pill fw-medium p-2 my-1"
+                    id={`eventId-${evento.id}`} style={{ background: "var(--mais-cultura-gradient-bg)",}} onClick={() => { router.push(`/editEvent?id=${evento.id}`) }} 
+                > Editar Solicitação</button>
+
+            </div>
+        </div>
+);
+
+}
+
+export default CardSolicitation;

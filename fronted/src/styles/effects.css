@@ -1,0 +1,19 @@
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* animação suave */
+}
+
+.card-hover:hover {
+  transform: translateY(-10px); /* levanta o card */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3) !important; /* sombra mais forte */
+}
+
+.link-hover:hover{
+  color: #F59E0B !important;
+}
+
+.location-card:hover {
+  transform: translateY(-1px); /* levanta o card */
+  border-color: var(--location-color);
+  color: var(--location-color) !important;
+  background-color: #FFF;
+}

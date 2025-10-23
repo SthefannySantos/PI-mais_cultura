@@ -341,15 +341,15 @@
             }
 
             const {
-                titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, capa_evento,map_link
+                titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, capa_evento,map_link, id_user
             } = resultado;
 
             const insertSql = `
-            INSERT INTO tb_eventos (titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, total_inscritos, concluido, capa_evento, map_link, user_solicitacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 'N', ?, ?, ?)
+            INSERT INTO tb_eventos (titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, total_inscritos, concluido, capa_evento, map_link, user_solicitacao, artista_cod) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 'N', ?, ?, ?, ?)
             `;
 
             await db.executar(insertSql, [
-                titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, capa_evento, map_link, id
+                titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, capa_evento, map_link, id, id_user
             ]);
 
             const deleteSql = 'DELETE FROM tb_solicitacoes WHERE id = ?';
