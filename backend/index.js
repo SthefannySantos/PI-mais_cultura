@@ -12,7 +12,13 @@
 
     const app = express();
 
-    app.use(cors());
+    const corsOptions = {
+        origin: 'http://191.252.60.107:3000', // seu frontend
+        methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+        allowedHeaders: ['Content-Type','Authorization'],
+    };
+
+    app.use(cors(corsOptions));
 
     app.use(express.static('public', { extensions: ['html'] }));
     app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
