@@ -1,4 +1,7 @@
 'use client'
+
+import Link from "next/link"
+
 const footer = () => {
     return(
         <footer className="bg-dark text-white pt-5">
@@ -15,16 +18,13 @@ const footer = () => {
                         <h3 className="fw-bold mb-3" >Navegação</h3>
                         <ul className="list-unstyled">
                             <li className="mb-2">
-                                <a className="text-light text-decoration-none">Eventos Concluídos</a>
+                                <Link href={'/eventsAvaliable'} className="text-light text-decoration-none">Eventos Disponíveis</Link>
                             </li>
                             <li className="mb-2">
-                                <a className="text-light text-decoration-none">Eventos Finalizados</a>
+                                <Link href={'/eventsFinished'} className="text-light text-decoration-none">Eventos Finalizados</Link>
                             </li>
                             <li className="mb-2">
-                                <a className="text-light text-decoration-none">Sobre</a>
-                            </li>
-                            <li className="mb-2">
-                                <a className="text-light text-decoration-none">Contato</a>
+                                <Link href={'/contact'} className="text-light text-decoration-none">Contato</Link>
                             </li>
                         </ul>
                     </div>
@@ -32,12 +32,10 @@ const footer = () => {
                         <h3 className="fw-bold mb-3" >Contato</h3>
                         <div className="d-flex align-items-center mb-1">
                             <i className="fa-regular fa-envelope me-2"></i>
-                            <small>maisecultura@gmail.com</small>
+                            <small>
+                            <a href="mailto:maisecultura@gmail.com" className="text-decoration-none text-reset">maisecultura@gmail.com</a>
+                        </small>
                         </div>
-                        {/* <div className="d-flex align-items-center mb-2">
-                            <i className="fa-solid fa-location-dot me-2"></i>
-                            <small>R. Humberto Rossetti, 711 - Jd de Faveri, Artur Nogueira - SP</small>
-                        </div> */}
                     </div>
                 </div>
                 <hr className="my-4 border-secondary"></hr>
