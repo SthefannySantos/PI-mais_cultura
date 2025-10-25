@@ -209,9 +209,9 @@ export default function Home() {
                                     </div>
 
                                    
-                                    <div className="d-flex align-items-center mb-2">
-                                        <i className="bi bi-currency-dollar me-2"></i>
-                                        <span className="fw-medium">R$ {event?.valor ?? 'Gratuito'}</span>
+                                    <div className="mb-2 text-center fs-5">
+                                        <i className="bi bi-tag me-1"></i>
+                                        <span className="fw-medium"> {event.valor == 0 ? 'Gratuito' : `R$ ${event.valor}`}</span>
                                     </div>
 
                                     {subscribed ? (
