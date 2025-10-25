@@ -17,6 +17,7 @@ export default function Home() {
     // States do form
     const [titulo, setTitulo] = useState("");
     const [maxParticipants, setMaxParticipants] = useState("");
+    const [valor, setValor] = useState(0);
     const [category, setCategory] = useState("teatro");
     const [date, setDate] = useState("");
     const [deadline, setDeadline] = useState("");
@@ -86,6 +87,7 @@ const handleSubmit = async (e) => {
 
         formData.append('titulo', titulo);
         formData.append('descricao', descricao);
+        formData.append('valor', valor);
         formData.append('dt_evento', date);
         formData.append('fim_inscricao', deadline);
         formData.append('limite_participantes', maxParticipants);
@@ -158,6 +160,7 @@ return (
                                         onChange={(e) => setTitulo(e.target.value)} required />
                                     </div>
 
+
                                     {nivelUser == 2 && (
                                         <div className="mb-4"> {/* Título */}
                                             <label className="form-label">Organizador</label>
@@ -165,6 +168,11 @@ return (
                                         </div>
                                     )}
 
+                                    <div className="mb-4"> {/* Valor */}
+                                        <label className="form-label">Valor</label>
+                                        <input type="number" step={0.1} className="form-control" placeholder="Digite 0 se for gratuíto" value={valor}
+                                        onChange={(e) => setValor(e.target.value)} required />
+                                    </div>
                                     
 
                                     {/* Categoria e Limite */}

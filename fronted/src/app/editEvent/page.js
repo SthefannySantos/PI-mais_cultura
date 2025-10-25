@@ -20,6 +20,7 @@ export default function EditEvent() {
 
     // States do form
     const [titulo, setTitulo] = useState("");
+    const [valor, setValor] = useState(0);
     const [maxParticipants, setMaxParticipants] = useState(null);
     const [category, setCategory] = useState("teatro");
     const [date, setDate] = useState("");
@@ -65,6 +66,7 @@ export default function EditEvent() {
 
             // Mapeamento para ambos
             setTitulo(data.titulo || '');
+            setValor(data.valor || 0);
             setMaxParticipants(data.limite_participantes || '');
             setArtista(data.organizador_evento || data.id_user || ''); // se solicitação pega id_user
             setCategory(data.categoria || 'teatro');
@@ -89,6 +91,7 @@ export default function EditEvent() {
 
         const formData = new FormData();
         formData.append('titulo', titulo);
+        formData.append('valor', valor);
         formData.append('descricao', descricao);
         formData.append('dt_evento', date);
         formData.append('fim_inscricao', deadline);
@@ -148,6 +151,12 @@ export default function EditEvent() {
                                             <label className="form-label">Título do Evento</label>
                                             <input type="text" className="form-control" placeholder="Digite o título" value={titulo}
                                             onChange={(e) => setTitulo(e.target.value)} required />
+                                        </div>
+
+                                        <div className="mb-4"> {/* Valor */}
+                                            <label className="form-label">Valor</label>
+                                            <input type="number" step={0.1} className="form-control" placeholder="Digite 0 se for gratuíto" value={valor}
+                                            onChange={(e) => setValor(e.target.value)} required />
                                         </div>
 
                                         {nivelUser == 2 && (

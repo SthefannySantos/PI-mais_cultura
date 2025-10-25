@@ -29,7 +29,7 @@
     const upload = multer({ storage });
 
     router.post('/createEvent', upload.single('imagem'), async (req, res) => {
-        const { titulo, descricao, local_evento, cidade, estado, categoria, artista, dt_evento, fim_inscricao, limite_participantes, map_link, nivel_solicitado, } = req.body;
+        const { titulo, descricao, local_evento, cidade, estado, categoria, artista, dt_evento, fim_inscricao, limite_participantes, map_link, nivel_solicitado, valor } = req.body;
         const capa_evento = req.file ? `/uploads/events/${req.file.filename}` : null;
         const mapLinkFinal = map_link || null;
 
@@ -40,10 +40,10 @@
         if (nivel_solicitado == 2) {
             organizador = artista;
             sql = `
-                INSERT INTO tb_eventos  (titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, map_link, capa_evento) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO tb_eventos  (titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, map_link, capa_evento, valor) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             `;
-            values = [titulo, descricao, local_evento, cidade, estado,  categoria, organizador, dt_evento, fim_inscricao, limite_participantes, mapLinkFinal, capa_evento];
+            values = [titulo, descricao, local_evento, cidade, estado,  categoria, organizador, dt_evento, fim_inscricao, limite_participantes, mapLinkFinal, capa_evento, valor];
 
         } else if(nivel_solicitado == 1){
             const querie = `SELECT * FROM tb_artistas WHERE id_user = ?`;
@@ -51,10 +51,10 @@
             organizador = fetch[0].nome_artista;
 
             sql = `
-                INSERT INTO tb_solicitacoes (id_user, titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, map_link, capa_evento) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO tb_solicitacoes (id_user, titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, map_link, capa_evento, valor) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             `;
-            values = [artista, titulo, descricao, local_evento, cidade, estado,  categoria, organizador, dt_evento, fim_inscricao, limite_participantes, mapLinkFinal, capa_evento];
+            values = [artista, titulo, descricao, local_evento, cidade, estado,  categoria, organizador, dt_evento, fim_inscricao, limite_participantes, mapLinkFinal, capa_evento, valor];
         }
 
 
@@ -71,12 +71,12 @@
 
     router.put('/updateEvent/:id', upload.single('imagem'), async (req, res) => {
         const { id } = req.params;
-        const { titulo, descricao, local_evento, cidade, estado, categoria, artista, dt_evento, fim_inscricao, limite_participantes, map_link, nivel_solicitado } = req.body;
+        const { titulo, descricao, local_evento, cidade, estado, categoria, artista, dt_evento, fim_inscricao, limite_participantes, map_link, nivel_solicitado, valor } = req.body;
         const mapLinkFinal = map_link || null;
 
         let organizador;
         let sql;
-        let values = [titulo, descricao, local_evento, cidade, estado, categoria, dt_evento, fim_inscricao, limite_participantes, mapLinkFinal];
+        let values = [titulo, descricao, local_evento, cidade, estado, categoria, dt_evento, fim_inscricao, limite_participantes, mapLinkFinal, valor];
 
         try {
             if (nivel_solicitado == 2) {
@@ -85,7 +85,7 @@
 
                 sql = `
                     UPDATE tb_eventos
-                    SET titulo = ?, descricao = ?, local_evento = ?, cidade = ?, estado = ?, categoria = ?, organizador_evento = ?, dt_evento = ?, fim_inscricao = ?, limite_participantes = ?, map_link = ?
+                    SET titulo = ?, descricao = ?, local_evento = ?, cidade = ?, estado = ?, categoria = ?, organizador_evento = ?, dt_evento = ?, fim_inscricao = ?, limite_participantes = ?, map_link = ?, valor = ?
                 `;
 
                 // Substituir imagem se houver arquivo novo
@@ -115,7 +115,7 @@
 
                 sql = `
                     UPDATE tb_solicitacoes
-                    SET titulo = ?, descricao = ?, local_evento = ?, cidade = ?, estado = ?, categoria = ?, organizador_evento = ?, dt_evento = ?, fim_inscricao = ?, limite_participantes = ?, map_link = ?, status = 'pendente'
+                    SET titulo = ?, descricao = ?, local_evento = ?, cidade = ?, estado = ?, categoria = ?, organizador_evento = ?, dt_evento = ?, fim_inscricao = ?, limite_participantes = ?, map_link = ?, status = 'pendente', valor = ?
                 `;
 
 
@@ -341,15 +341,15 @@
             }
 
             const {
-                titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, capa_evento,map_link, id_user
+                titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, capa_evento,map_link, id_user, valor
             } = resultado;
 
             const insertSql = `
-            INSERT INTO tb_eventos (titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, total_inscritos, concluido, capa_evento, map_link, user_solicitacao, artista_cod) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 'N', ?, ?, ?, ?)
+            INSERT INTO tb_eventos (titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, total_inscritos, concluido, capa_evento, map_link, user_solicitacao, artista_cod, valor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 'N', ?, ?, ?, ?, ?)
             `;
 
             await db.executar(insertSql, [
-                titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, capa_evento, map_link, id, id_user
+                titulo, descricao, local_evento, cidade, estado, categoria, organizador_evento, dt_evento, fim_inscricao, limite_participantes, capa_evento, map_link, id, id_user, valor
             ]);
 
             const deleteSql = 'DELETE FROM tb_solicitacoes WHERE id = ?';

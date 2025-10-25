@@ -166,6 +166,11 @@ export default function Home() {
                                         </div>
                                     </div>
 
+                                    <div className="mb-2 text-center fs-5">
+                                        <i className="bi bi-tag me-1"></i>
+                                        <span className="fw-medium"> {event.valor == 0 ? 'Gratuito' : `R$ ${event.valor}`}</span>
+                                    </div>
+
                                     <div className="border-top pt-3 mb-4">
                                         <h5 className="fw-bold">Organizador</h5>
                                         <p className="fw-medium mb-2">{event.organizador_evento}</p>

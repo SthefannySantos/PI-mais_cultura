@@ -208,6 +208,12 @@ export default function Home() {
                                         </div>
                                     </div>
 
+                                   
+                                    <div className="d-flex align-items-center mb-2">
+                                        <i className="bi bi-currency-dollar me-2"></i>
+                                        <span className="fw-medium">R$ {event?.valor ?? 'Gratuito'}</span>
+                                    </div>
+
                                     {subscribed ? (
                                         <button type="button" aria-label={`Participe do nosso evento`} className="btn w-100 text-white rounded-pill fw-medium p-2 my-1 mb-4" style={{ background: "var(--mais-cultura-gradient-bg)",}} disabled> Participando </button>
                                     ) : (
