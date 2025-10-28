@@ -26,6 +26,8 @@ export default function Home() {
                 const response = await fetch(`${backendUrl}/user/artistsData`);
                 const data = await response.json();
 
+                 if (!response.ok) { setArtists([]); }
+
                 setArtists(data || []);
             } catch (error) {
                 console.error("Erro ao carregar artistas:", error);
