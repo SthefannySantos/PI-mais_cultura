@@ -16,6 +16,7 @@ export default function ThemeToggle() {
     <button 
       onClick={toggleTheme}
       className="btn btn-primary py-2 position-fixed bottom-0 end-0 m-3"
+      style={{zIndex: 9999}}
     >
       {theme === "light" ? <i className="bi bi-moon-stars-fill"></i> : <i className="bi bi-brightness-high-fill"></i>}
     </button>
