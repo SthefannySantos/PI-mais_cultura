@@ -79,37 +79,37 @@ export default function Home() {
                         <div className="row justify-content-center">
                             <div className="col-lg-5 col-md-7">
                                 
-                                <div className="cultura-card p-5 shadow-lg rounded-4">
+                                <div className="cultura-card p-5 shadow-lg rounded-4" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
                                     <div className="row text-center mb-3">
                                         <h1 className="fw-bolder mb-1"> <span className="mais-cultura-gradient-text">+Cultura</span> </h1>
-                                        <p className="fs-5 fw-medium text-muted"> Crie sua conta para continuar </p>
+                                        <p className="fs-5 fw-medium" style={{ color: "var(--card-text-muted)" }}> Crie sua conta para continuar </p>
                                     </div>
                                     
                                     <form onSubmit={handleSubmit}>
                                         <div className="row">
                                             <div className="mb-4">
                                                 <div className="input-group">
-                                                    <span className="input-group-text bg-white border-end-0">
+                                                    <span className="input-group-text border-end-0" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }}>
                                                         <i className="fa-solid fa-user"></i>
                                                     </span>
-                                                    <input type="text" className="form-control border-start-0" placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} required />
+                                                    <input type="text" className="form-control border-start-0" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} required />
                                                 </div>
                                             </div>
                                             <div className="mb-4">
                                                 <div className="input-group">
-                                                    <span className="input-group-text bg-white border-end-0">
+                                                    <span className="input-group-text border-end-0" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }}>
                                                         <i className="fa-regular fa-envelope"></i>
                                                     </span>
-                                                    <input type="email" className="form-control border-start-0" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                                    <input type="email" className="form-control border-start-0" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
                                                 </div>
                                             </div>
                                             <div className="mb-3">
                                                 <div className="input-group">
-                                                    <span className="input-group-text bg-white border-end-0">
+                                                    <span className="input-group-text border-end-0" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }}>
                                                         <i className="fa-solid fa-lock"></i>
                                                     </span>
-                                                    <input type={show ? "text" : "password"} className="form-control border-start-0" placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                                                    <span className="input-group-text bg-white" onClick={() => togglePassword(show, setShow)}>
+                                                    <input type={show ? "text" : "password"} className="form-control border-start-0" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                                                    <span className="input-group-text" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} onClick={() => togglePassword(show, setShow)}>
                                                         <i className={`fa-solid ${show ? "fa-eye-slash" : "fa-eye"}`}></i>
                                                     </span>
                                                 </div>

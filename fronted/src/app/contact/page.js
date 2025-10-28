@@ -84,24 +84,24 @@ return (
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-lg-8">
-                            <div className="cultura-card p-5 shadow-lg rounded-4">
+                            <div className="cultura-card p-5 shadow-lg rounded-4" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
                                 <div className="text-center mb-2">
                                     <h2 className="h3 fw-bold mb-1 cultura-gradient-text">Envie sua Mensagem</h2>
-                                    <p className="text-muted">
+                                    <p style={{ color: "var(--card-text-muted)"}}>
                                     Preencha o formulário abaixo e nossa equipe entrará em contato
                                     </p>
                                 </div>
                             
                                 <form onSubmit={handleSubmit} >
-                                    <div className="row">
+                                    <div className="row" >
                                         <div className="col-md-6 mb-3">
                                             <label className="form-label fw-medium">Nome completo</label>
-                                            <input type="text" className="form-control" placeholder="Seu nome" value={name}
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Seu nome" value={name}
                                             onChange={(e) => setName(e.target.value)} required />
                                         </div>
                                         <div className="col-md-6 mb-3">
                                             <label className="form-label fw-medium">E-mail</label>
-                                            <input type="email" className="form-control" placeholder="seu@email.com" value={email}
+                                            <input type="email" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="seu@email.com" value={email}
                                             onChange={(e) => setEmail(e.target.value)} required />
                                         </div>
                                     </div>
@@ -109,7 +109,7 @@ return (
                                     <div className="row">
                                         <div className="col-md-6 mb-3">
                                             <label className="form-label fw-medium">Tipo de contato</label>
-                                            <select name="type" className="form-select" value={contactType}
+                                            <select name="type" className="form-select" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={contactType}
                                             onChange={(e) => setContactType(e.target.value)}>
                                                 <option value="general">Dúvida geral</option>
                                                 <option value="event">Organizar evento</option>
@@ -120,14 +120,14 @@ return (
                                         </div>
                                         <div className="col-md-6 mb-3">
                                             <label className="form-label fw-medium">Assunto</label>
-                                            <input type="text" className="form-control" placeholder="Assunto da sua mensagem" value={subject}
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Assunto da sua mensagem" value={subject}
                                             onChange={(e) => setSubject(e.target.value)} required />
                                         </div>
                                     </div>
 
                                     <div className="mb-4">
                                         <label className="form-label fw-medium">Mensagem</label>
-                                        <textarea className="form-control" rows={6} placeholder="Descreva como podemos ajudá-lo..." value={message}
+                                        <textarea className="form-control" rows={6} style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Descreva como podemos ajudá-lo..." value={message}
                                         onChange={(e) => setMessage(e.target.value)} required />
                                     </div>
 

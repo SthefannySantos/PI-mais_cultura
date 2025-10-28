@@ -52,7 +52,7 @@ const Card = ({ evento, userId}) => {
     };    
 
     return(
-        <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover">
+        <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
             <img className="" height="" src={imgPath} alt={""} />
     
             {/* Tag da categoria */}
@@ -64,11 +64,11 @@ const Card = ({ evento, userId}) => {
             <div className="card-body mx-1" >
                 <h5 className="card-title mb-1" > {evento.titulo} </h5>
                 <ul className="list-group list-group-flush my-1">
-                    <li className="list-group-item border-0 p-0 mb-1 text-muted"><i className="fa-regular fa-user" aria-hidden="true"></i> {evento.organizador_evento}</li>
-                    <li className="list-group-item border-0 p-0 mb-1 text-muted">
+                    <li className="list-group-item border-0 p-0 mb-1" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text-muted)" }}><i className="fa-regular fa-user" aria-hidden="true"></i> {evento.organizador_evento}</li>
+                    <li className="list-group-item border-0 p-0 mb-1" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text-muted)" }}>
                         <i className="fa-regular fa-calendar me-1" aria-hidden="true"></i> {formatarData(evento.dt_evento)}
                     </li>
-                    <li className="list-group-item border-0 p-0 mb-1 text-muted" aria-hidden="true">
+                    <li className="list-group-item border-0 p-0 mb-1" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text-muted)" }} aria-hidden="true">
                         <div className="d-flex justify-content-between">
                             <span><i className="fa-solid fa-users" aria-hidden="true"></i> {evento.total_inscritos}/{evento.limite_participantes}</span>
                             <span>{percent}%</span>

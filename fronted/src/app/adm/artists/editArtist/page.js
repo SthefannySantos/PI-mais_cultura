@@ -126,27 +126,27 @@ export default function Home() {
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-lg-8">
-                                <div className="cultura-card p-5 shadow-lg rounded-4">
+                                <div className="cultura-card p-5 shadow-lg rounded-4" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
                                     <form onSubmit={handleSubmit}>
 
                                         <div className="mb-3">
                                             <label className="form-label">Nome do Artista</label>
-                                            <input type="text" className="form-control" placeholder="Nome do Artista" value={nome} onChange={(e) => setNome(e.target.value)} required />
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Nome do Artista" value={nome} onChange={(e) => setNome(e.target.value)} required />
                                         </div>
 
                                         <div className="mb-3">
                                             <label className="form-label">Atuação</label>
-                                            <input type="text" className="form-control" placeholder="Ex: Cantor" value={atuacao} onChange={(e) => setAtuacao(e.target.value)} required />
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Ex: Cantor" value={atuacao} onChange={(e) => setAtuacao(e.target.value)} required />
                                         </div>
 
                                         <div className="mb-3">
                                             <label className="form-label">Descrição do artista</label>
-                                            <textarea className="form-control" rows={5} placeholder="Descreva sobre o artista..." value={descricao} onChange={(e) => setDescricao(e.target.value)} required />
+                                            <textarea className="form-control" rows={5} style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Descreva sobre o artista..." value={descricao} onChange={(e) => setDescricao(e.target.value)} required />
                                         </div>
 
                                         <div className="mb-4">
                                             <label className="form-label">Foto do artista (opcional)</label>
-                                            <input type="file" className="form-control" accept="image/*" onChange={(e) => handleProfileChange(e, setCover)} 
+                                            <input type="file" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} accept="image/*" onChange={(e) => handleProfileChange(e, setCover)} 
                                             />
                                         </div>
 
@@ -154,27 +154,27 @@ export default function Home() {
 
                                         <div className="mb-3">
                                             <label className="form-label">Email</label>
-                                            <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                            <input type="email" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={email} onChange={(e) => setEmail(e.target.value)} />
                                         </div>
 
                                         <div className="mb-4">
                                             <label className="form-label">Telefone</label>
-                                            <input type="number" className="form-control" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+                                            <input type="number" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={telefone} onChange={(e) => setTelefone(e.target.value)} />
                                         </div>
 
                                         <div className="mb-3">
                                             <label className="form-label">Whatsapp</label>
-                                            <input type="number" className="form-control" value={wpp} onChange={(e) => setWpp(e.target.value)} />
+                                            <input type="number" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={wpp} onChange={(e) => setWpp(e.target.value)} />
                                         </div>
                                         
                                         <div className="mb-3">
                                             <label className="form-label">Instagram</label>
-                                            <input type="text" className="form-control" value={instagram} onChange={(e) => setInstagram(e.target.value)} />
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={instagram} onChange={(e) => setInstagram(e.target.value)} />
                                         </div>
 
                                         <div className="mb-3">
                                             <label className="form-label">X / Twitter</label>
-                                            <input type="text" className="form-control" value={x} onChange={(e) => setX(e.target.value)} />
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={x} onChange={(e) => setX(e.target.value)} />
                                         </div>
 
                                         <div className="text-center">

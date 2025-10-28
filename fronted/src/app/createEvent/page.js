@@ -151,12 +151,12 @@ return (
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-lg-8">
-                            <div className="cultura-card p-5 shadow-lg rounded-4">
+                            <div className="cultura-card p-5 shadow-lg rounded-4" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
                             
                                 <form onSubmit={handleSubmit}>
                                     <div className="mb-4"> {/* Título */}
                                         <label className="form-label">Título do Evento</label>
-                                        <input type="text" className="form-control" placeholder="Digite o título" value={titulo}
+                                        <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Digite o título" value={titulo}
                                         onChange={(e) => setTitulo(e.target.value)} required />
                                     </div>
 
@@ -164,13 +164,13 @@ return (
                                     {nivelUser == 2 && (
                                         <div className="mb-4"> {/* Título */}
                                             <label className="form-label">Organizador</label>
-                                            <input type="text" className="form-control" placeholder="Nome do organizador do evento" value={artista} onChange={(e) => setArtista(e.target.value)} required />
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Nome do organizador do evento" value={artista} onChange={(e) => setArtista(e.target.value)} required />
                                         </div>
                                     )}
 
                                     <div className="mb-4"> {/* Valor */}
                                         <label className="form-label">Valor</label>
-                                        <input type="number" step={0.1} className="form-control" placeholder="Digite 0 se for gratuíto" value={valor}
+                                        <input type="number" step={0.1} className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Digite 0 se for gratuíto" value={valor}
                                         onChange={(e) => setValor(e.target.value)} required />
                                     </div>
                                     
@@ -181,7 +181,7 @@ return (
                                         <div className="row g-3">
                                             <div className="col-md-6">
                                                 <label className="form-label">Categoria</label>
-                                                <select className="form-select" value={category} onChange={(e) => setCategory(e.target.value)} required >
+                                                <select className="form-select" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={category} onChange={(e) => setCategory(e.target.value)} required >
                                                     <option value="teatro">Teatro</option>
                                                     <option value="musica">Música</option>
                                                     <option value="danca">Dança</option>
@@ -191,7 +191,7 @@ return (
                                             </div>
                                             <div className="col-md-6">
                                                 <label className="form-label">Limite de Participantes</label>
-                                                <input type="number" min={1} className="form-control" placeholder="Ex: 50" value={maxParticipants} onChange={(e) => setMaxParticipants(e.target.value)} required />
+                                                <input type="number" min={1} className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Ex: 50" value={maxParticipants} onChange={(e) => setMaxParticipants(e.target.value)} required />
                                             </div>
                                         </div>
                                     </fieldset>
@@ -202,11 +202,11 @@ return (
                                         <div className="row g-3">
                                             <div className="col-md-6">
                                                 <label className="form-label">Data e Hora do Evento</label>
-                                                <input type="datetime-local" className="form-control" value={date} onChange={(e) => setDate(e.target.value)} required />
+                                                <input type="datetime-local" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={date} onChange={(e) => setDate(e.target.value)} required />
                                             </div>
                                             <div className="col-md-6">
                                                 <label className="form-label">Fim das Inscrições</label>
-                                                <input type="date" className="form-control" value={deadline} onChange={(e) => setDeadline(e.target.value)} required />
+                                                <input type="date" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={deadline} onChange={(e) => setDeadline(e.target.value)} required />
                                             </div>
                                         </div>
                                     </fieldset>
@@ -216,30 +216,30 @@ return (
                                         <legend className="fs-6 fw-semibold mb-1">Endereço (Válido somente para São Paulo)</legend>
                                         <div className="mb-3 "> {/* Local */}
                                             <label className="form-label mt-3">Local do Evento</label>
-                                            <input type="text" className="form-control" placeholder="Digite o título" value={local}
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Digite o título" value={local}
                                             onChange={(e) => setLocal(e.target.value)} required />
                                         </div>
                                         <div className="row g-3">
                                         <div className="col-md-4">
                                             <label className="form-label">CEP</label>
-                                            <input type="text" className="form-control" placeholder="00000-000" value={CEP} onChange={(e) => setCEP(e.target.value)} onBlur={handleCEPBlur} required />
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="00000-000" value={CEP} onChange={(e) => setCEP(e.target.value)} onBlur={handleCEPBlur} required />
 
                                         </div>
                                         <div className="col-md-8">
                                             <label className="form-label">Rua</label>
-                                            <input type="text" className="form-control" value={rua} onChange={(e) => setRua(e.target.value)} disabled={addressDisabled} required />
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={rua} onChange={(e) => setRua(e.target.value)} disabled={addressDisabled} required />
                                         </div>
                                         <div className="col-md-3">
                                             <label className="form-label">N°</label>
-                                            <input type="text" className="form-control" value={num} onChange={(e) => setNum(e.target.value)} disabled={addressDisabled} required />
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={num} onChange={(e) => setNum(e.target.value)} disabled={addressDisabled} required />
                                         </div>
                                         <div className="col-md-5">
                                             <label className="form-label">Bairro</label>
-                                            <input type="text" className="form-control" value={bairro} onChange={(e) => setBairro(e.target.value)} disabled={addressDisabled} required />
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={bairro} onChange={(e) => setBairro(e.target.value)} disabled={addressDisabled} required />
                                         </div>
                                         <div className="col-md-4">
                                             <label className="form-label">Cidade</label>
-                                            <input type="text" className="form-control" value={cidade} onChange={(e) => setCidade(e.target.value)} disabled={addressDisabled} required />
+                                            <input type="text" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} value={cidade} onChange={(e) => setCidade(e.target.value)} disabled={addressDisabled} required />
                                         </div>
                                         </div>
                                     </fieldset>
@@ -247,19 +247,19 @@ return (
                                     {/* Descrição */}
                                     <div className="mb-4">
                                         <label className="form-label fw-semibold">Descrição do Evento</label>
-                                        <textarea className="form-control" rows={5} placeholder="Descreva o evento..." value={descricao} onChange={(e) => setDescricao(e.target.value)} required
+                                        <textarea className="form-control" rows={5} style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Descreva o evento..." value={descricao} onChange={(e) => setDescricao(e.target.value)} required
                                         />
                                     </div>
 
                                     <div className="mb-4"> {/* Google Maps */}
                                         <label className="form-label">Link para Google Maps (opcional)</label>
-                                        <input type="url" className="form-control" placeholder="Link para o google maps" value={mapLink}
+                                        <input type="url" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} placeholder="Link para o google maps" value={mapLink}
                                         onChange={(e) => setMapLink(e.target.value)} />
                                     </div>
 
                                     <div className="mb-4"> {/* Capa */}
                                         <label className="form-label">Capa do Evento (opcional)</label>
-                                        <input type="file" className="form-control" accept="image/*" onChange={(e) => handleCoverChange(e, setCover)} />
+                                        <input type="file" className="form-control" style={{ backgroundColor: "var(--card-bg)", color: "var(--text-input)" }} accept="image/*" onChange={(e) => handleCoverChange(e, setCover)} />
 
                                     </div>
 

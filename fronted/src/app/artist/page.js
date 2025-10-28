@@ -80,13 +80,13 @@ export default function Home() {
                         <div className="row justify-content-center">
                             <div className="text-center col-lg-6 col-mb-8">
                                 
-                                <div className="cultura-card mb-4 p-4 ">
+                                <div className="cultura-card mb-4 p-4 " style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
                                     <div className="mb-3">
                                         <img className="rounded-circle border border-4 " height="" src={artistProfile} alt={""} style={{ height: '150px', width: '150px', objectFit: 'cover'}} />
                                     </div>
                                     <h1 className="fw-bold mb-2">{artistData.nome_artista}</h1>
                                     <h5 className="mais-cultura-gradient-text fw-bold mb-3">{artistData.atuacao}</h5>
-                                    <p className="text-muted mb-4">
+                                    <p className="mb-4" style={{ color: "var(--card-text-muted)" }}>
                                       {artistData.descricao}
                                     </p>
                                     <h5 className="fw-bold mb-2">Contato</h5>

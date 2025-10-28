@@ -15,7 +15,7 @@ const Menu = () => {
     };
     
     return(
-        <nav className="navbar navbar-expand-lg navbar-light bg-light" aria-label="Menu" id="menu-area">
+        <nav className="navbar navbar-expand-lg" style={{backgroundColor: "var(--background-menu)"}} aria-label="Menu" id="menu-area">
             
             <div className="container-fluid px-3 fw-medium">
                 <Link className="navbar-brand fw-bold" href="/">
@@ -33,23 +33,23 @@ const Menu = () => {
                 <div className="collapse navbar-collapse" id="navbarsExample11">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" style={{color: '#6B7280'}} href="/eventsAvaliable">Eventos Disponíveis</Link>
+                            <Link className="nav-link" style={{color: 'var(--navlink-color)'}} href="/eventsAvaliable">Eventos Disponíveis</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" style={{color: '#6B7280'}} href="/eventsFinished">Eventos Concluídos</Link>
+                            <Link className="nav-link" style={{color: 'var(--navlink-color)'}} href="/eventsFinished">Eventos Concluídos</Link>
                         </li>
 
                         {nivelUser == 1 && (
                             <li className="nav-item">
-                                <Link className="nav-link" style={{color: '#6B7280'}} href="/myEvents">Meus Eventos</Link>
+                                <Link className="nav-link" style={{color: 'var(--navlink-color)'}} href="/myEvents">Meus Eventos</Link>
                             </li>
                         )}                        
 
                         <li className="nav-item">
-                            <Link className="nav-link" style={{color: '#6B7280'}} href="/eventsSubscribed">Eventos Inscritos</Link>
+                            <Link className="nav-link" style={{color: 'var(--navlink-color)'}} href="/eventsSubscribed">Eventos Inscritos</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" style={{color: '#6B7280'}} href="/contact">Contato</Link>
+                            <Link className="nav-link" style={{color: 'var(--navlink-color)'}} href="/contact">Contato</Link>
                         </li> 
 
                          

@@ -142,14 +142,14 @@ export default function Home() {
                         <div className="row">
                             <div className="col lg-8 mb-lg-0">
                                 
-                                <div className="cultura-card mb-4 p-4 ">
+                                <div className="cultura-card mb-4 p-4 " style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
                                     <h2 className="fw-bold mb-3">Informações</h2>
                                     <div className="row g-4 d-flex align-items-center">
                                         <div className="col-md-3">
                                             <div className="d-flex align-items-center">
                                                 <i className="fa-regular fa-calendar me-3 mais-cultura-gradient-text"></i>
                                                 <div>
-                                                    <small className="text-muted d-block">Data</small>
+                                                    <small className="d-block"  style={{ color: "var(--card-text-muted)" }}>Data</small>
                                                     <strong>{EventDateFormated(event.dt_evento)}</strong>
                                                 </div>
                                             </div>
@@ -159,7 +159,7 @@ export default function Home() {
                                             <div className="d-flex align-items-center">
                                                 <i className="fa-regular fa-clock me-3 mais-cultura-gradient-text"></i>
                                                 <div>
-                                                    <small className="text-muted d-block">Horário</small>
+                                                    <small className="d-block" style={{ color: "var(--card-text-muted)" }}>Horário</small>
                                                     <strong>{EventHourFormated(event.dt_evento)}</strong>
                                                 </div>
                                             </div>
@@ -169,7 +169,7 @@ export default function Home() {
                                             <div className="d-flex align-items-center">
                                                 <i className="fa-solid fa-location-dot me-3 mais-cultura-gradient-text"></i>
                                                 <div>
-                                                    <small className="text-muted d-block">Local</small>
+                                                    <small className="d-block" style={{ color: "var(--card-text-muted)" }}>Local</small>
                                                     <strong>{event.local_evento}</strong>
                                                 </div>
                                             </div>
@@ -179,7 +179,7 @@ export default function Home() {
 
                                 </div>
 
-                                <div className="cultura-card mb-4 p-4">
+                                <div className="cultura-card mb-4 p-4" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
                                     <h2 className="fw-bold mb-3">Sobre o evento</h2>
 
                                     <div className="mb-4">
@@ -197,8 +197,8 @@ export default function Home() {
                             </div>
 
                             <div className="col-lg-4">
-                                <div className="cultura-card mb-4 p-4">
-                                    <div className="border-0 p-0 mb-3 text-muted" aria-hidden="true">
+                                <div className="cultura-card mb-4 p-4" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }} >
+                                    <div className="border-0 p-0 mb-3" style={{ color: "var(--card-text-muted)" }} aria-hidden="true">
                                         <div className="d-flex justify-content-between">
                                             <span><i className="fa-solid fa-users" aria-hidden="true"></i> {event.total_inscritos}/{event.limite_participantes}</span>
                                             <span>{Math.round((event.total_inscritos / event.limite_participantes) * 100)}%</span>
@@ -208,16 +208,15 @@ export default function Home() {
                                         </div>
                                     </div>
 
-                                   
-                                    <div className="mb-2 text-center fs-5">
+                                    <div className="mb-3 text-center fs-5" style={{ color: "var(--card-text-muted)" }}>
                                         <i className="bi bi-tag me-1"></i>
                                         <span className="fw-medium"> {event.valor == 0 ? 'Gratuito' : `R$ ${event.valor}`}</span>
                                     </div>
 
                                     {subscribed ? (
-                                        <button type="button" aria-label={`Participe do nosso evento`} className="btn w-100 text-white rounded-pill fw-medium p-2 my-1 mb-4" style={{ background: "var(--mais-cultura-gradient-bg)",}} disabled> Participando </button>
+                                        <button type="button" aria-label={`Participe do nosso evento`} className="btn w-100 text-white rounded-pill fw-medium p-2 my-1 mb-4 border-0" style={{ background: "var(--mais-cultura-gradient-bg)",}} disabled> Participando </button>
                                     ) : (
-                                        <button type="button" aria-label={`Participe do nosso evento`} className="btn w-100 text-white rounded-pill fw-medium p-2 my-1 mb-4" style={{ background: "var(--mais-cultura-gradient-bg)",}} disabled={participateDisabled(event)} onClick={subscribeEvent} > Participar </button>
+                                        <button type="button" aria-label={`Participe do nosso evento`} className="btn w-100 text-white rounded-pill fw-medium p-2 my-1 mb-4 border-0" style={{ background: "var(--mais-cultura-gradient-bg)",}} disabled={participateDisabled(event)} onClick={subscribeEvent} > Participar </button>
                                     )}
 
                                     <div className="border-top pt-3 mb-4">

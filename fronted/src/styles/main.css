@@ -1,18 +1,68 @@
-body{
-    --mais-cultura-gradient-bg: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
-    --mais-cultura-finished-color: #198754;
-     --card-shadow-md: 0 4px 12px rgba(139, 92, 246, 0.15);
-     --location-color: #8B5CF6;
-}
-
 * {
     font-family: var(--font-geist-sans);
 }
 
+/* Tema claro */
+:root {
+  --mais-cultura-gradient-bg: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+  --mais-cultura-finished-color: #198754;
+  --card-shadow-md: 0 4px 12px rgba(139, 92, 246, 0.15);
+  --location-color: #8B5CF6;
+  --background: #ffffff;
+  --background-menu: #f8f8f8;
+  --text-color: #000000;
+  --navlink-color: #6B7280;
+  --artist-contact-bg: #f8f9fa; 
+}
+
+/* Tema escuro */
+body.dark-theme {
+  --mais-cultura-gradient-bg: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+  --mais-cultura-finished-color: #4ade80;
+  --card-shadow-md: 0 2px 12px rgba(39, 39, 41, 0.212);
+  --location-color: #8B5CF6;
+  --background: #121212;
+  --background-menu: #181818;
+  --text-color: #ffffff;
+  --text-input: #c2c2c2;
+  --navlink-color: #9ca4b4;
+  --artist-contact-bg: #292a2b70;
+}
+
+body.dark-theme ::placeholder {
+    color: #ffffff7e;
+   
+}
+
+body.dark-theme .form-control, body.dark-theme select, body.dark-theme .input-group-text{
+   border-color: #e2e2e27c !important;
+    color-scheme: dark;
+}
+
+:root {
+  --card-bg: #ffffff;
+  --card-text: #000000;
+  --card-text-muted: #212529bf;
+  --progress-bg: #e5e7eb;
+}
+
+body.dark-theme {
+  --card-bg: #1e1e1e;
+  --card-text: #ffffff;
+  --card-text-muted: #b8bfc5cc;
+  --progress-bg: #374151;
+}
+
+body{
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+
 .mais-cultura-gradient-text{
-    background: var(--mais-cultura-gradient-bg);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  background: var(--mais-cultura-gradient-bg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .text-justify {

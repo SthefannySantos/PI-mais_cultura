@@ -28,7 +28,7 @@ const CardSolicitation = ({ evento }) => {
     const imgPath = evento.capa_evento ? `${backendUrl}${evento.capa_evento}` : `/events-categories/${evento.categoria}.jpg`;
 
     return(
-        <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover">
+        <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
             <img className="" height="" src={imgPath} alt={""} />
     
             {/* Tag da categoria */}
@@ -40,7 +40,7 @@ const CardSolicitation = ({ evento }) => {
             <div className="card-body mx-1" >
                 <h5 className="card-title mb-1" > {evento.titulo} </h5>
                 <ul className="list-group list-group-flush my-1">
-                    <li className="list-group-item border-0 p-0 mb-1 text-muted">
+                    <li className="list-group-item border-0 p-0 mb-1" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text-muted)" }}>
                         <i className="fa-regular fa-calendar me-1" aria-hidden="true"></i> {formatarData(evento.dt_evento)}
                     </li>   
                 </ul>

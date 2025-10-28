@@ -66,8 +66,8 @@ export default function Home() {
                                     <h3 className="text-center mt-3 text-secondary">Não foi possível encontrar usuários</h3>
                                 </div>
                             ) : (
-                                <div className="table-responsive">
-                                    <table className="table table-striped table-hover">
+                                <div className="table-responsive" style={{minHeight: '75vh'}}>
+                                    <table className="table table-striped table-hover table-borderless dark-table">
                                         <thead className="table-dark">
                                             <tr>
                                                 <th>Cód.</th>

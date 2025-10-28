@@ -9,7 +9,7 @@ const Card = ({ artist }) => {
     const imgPath = artist.profile_pic ? `${backendUrl}${artist.profile_pic}` : `/artist-icon.png`;
     
     return(
-        <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover text-center">
+        <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover text-center" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
             {/* Imagem circular */}
             <img 
                 src={imgPath} 

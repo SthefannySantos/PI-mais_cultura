@@ -17,7 +17,7 @@ const Card = ({ evento }) => {
   const router = useRouter();
 
   return (
-    <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover">
+    <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover" style={{ backgroundColor: "var(--card-bg)" }}>
 
       <div className="card-body d-flex flex-column align-items-center justify-content-center mx-1">
         <button

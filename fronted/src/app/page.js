@@ -10,6 +10,7 @@ import Card from "@/components/Card";
 import CardFinished from "@/components/CardFinished";
 import Footer from "@/components/Footer";
 import { useVerifyUser } from "@/hooks/useVerifyUser";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
     useVerifyUser();

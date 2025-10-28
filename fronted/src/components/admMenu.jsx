@@ -12,7 +12,7 @@ const admMenu = () => {
     };
     
     return(
-        <nav className="navbar navbar-expand-lg navbar-light bg-light" aria-label="Menu" id="menu-area">
+        <nav className="navbar navbar-expand-lg" style={{backgroundColor: "var(--background-menu)"}} aria-label="Menu" id="menu-area">
             
             <div className="container-fluid px-3 fw-medium">
                 <Link className="navbar-brand fw-bold" href="/adm">
@@ -30,16 +30,16 @@ const admMenu = () => {
                 <div className="collapse navbar-collapse" id="navbarsExample11">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" style={{color: '#6B7280'}} href="/adm/solicitations">Solicitações</Link>
+                            <Link className="nav-link" style={{color: 'var(--navlink-color)'}} href="/adm/solicitations">Solicitações</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" style={{color: '#6B7280'}} href="/createEvent">Criar Evento</Link>
+                            <Link className="nav-link" style={{color: 'var(--navlink-color)'}} href="/createEvent">Criar Evento</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" style={{color: '#6B7280'}} href="/adm/users">Usuários</Link>
+                            <Link className="nav-link" style={{color: 'var(--navlink-color)'}} href="/adm/users">Usuários</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" style={{color: '#6B7280'}} href="/adm/artists">Artistas</Link>
+                            <Link className="nav-link" style={{color: 'var(--navlink-color)'}} href="/adm/artists">Artistas</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link text-danger" role="button" onClick={handleLogout}>Logout</a>
