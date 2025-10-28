@@ -19,8 +19,17 @@ export default function Home() {
         async function fetchData() {
             try {
                 const response = await fetch(`${backendUrl}/events/allSolicitations`);
+
+                 if (!response.ok) {
+                    if (response.status === 404) {
+                        setSolicitations([]); return;
+                    }
+                    throw new Error("Erro ao buscar artistas");
+                }
+
                 const events = await response.json();
-                setSolicitations(events);
+
+                setSolicitations(Array.isArray(events) ? events : []);
             } catch (error) {
                 console.error("Erro ao carregar eventos:", error);
                 setSolicitations([]);

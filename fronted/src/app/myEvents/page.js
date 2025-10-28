@@ -26,10 +26,20 @@ export default function Home() {
                 if (!userId) return;
 
                 const response = await fetch(`${backendUrl}/action/artistEvents/${userId}`);
+
+                 if (!response.ok) {
+                    if (response.status === 404) {
+                        setEvents([]);
+                        setRequests([]); return;
+                    }
+                    throw new Error("Erro ao buscar eventos");
+                }
+
                 const data = await response.json();
 
-                setEvents(data.eventos || []);
-                setRequests(data.solicitacoes || []);
+                setEvents(Array.isArray(data.eventos) ? data.eventos : []);
+                setRequests(Array.isArray(data.solicitacoes) ? data.solicitacoes : []);
+
             } catch (error) {
                 console.error("Erro ao carregar eventos:", error);
                 setEvents([]);
