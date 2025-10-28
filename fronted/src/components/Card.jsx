@@ -28,8 +28,8 @@ const Card = ({ evento }) => {
     const imgPath = evento.capa_evento ? `${backendUrl}${evento.capa_evento}` : `/events-categories/${evento.categoria}.jpg`;
 
     return(
-        <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover" style={{ maxHeight: '260px', backgroundColor: "var(--card-bg)", color: "var(--card-text)" }} >
-            <img className="" height="" src={imgPath} alt={""} />
+        <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }} >
+            <img className="" style={{ maxHeight: '260px' }} height="" src={imgPath} alt={""} />
     
             {/* Tag da categoria */}
             <span className="position-absolute top-0 end-0 m-3 rounded-pill px-2 text-white fw-bold"
