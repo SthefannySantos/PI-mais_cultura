@@ -53,6 +53,15 @@ body.dark-theme {
   --progress-bg: #374151;
 }
 
+.navbar-toggler-icon {
+  filter: none;
+}
+
+/* Quando estiver no modo escuro */
+body.dark .navbar-toggler-icon {
+  filter: invert(1);
+}
+
 body{
   background-color: var(--background);
   color: var(--text-color);
