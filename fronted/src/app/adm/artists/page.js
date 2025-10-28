@@ -26,7 +26,9 @@ export default function Home() {
                 const response = await fetch(`${backendUrl}/user/artistsData`);
                 const data = await response.json();
 
-                 if (!response.ok) { setArtists([]); }
+
+
+                if (!response.ok) { if (response.status === 404) { setArtists([]); } }
 
                 setArtists(data || []);
             } catch (error) {
