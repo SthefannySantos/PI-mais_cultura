@@ -24,13 +24,18 @@ export default function Home() {
                 if (!userId) return;
 
                 const response = await fetch(`${backendUrl}/user/artistsData`);
-                const data = await response.json();
-
-
-
                 if (!response.ok) { if (response.status === 404) { setArtists([]); } }
 
-                setArtists(data || []);
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        setArtists([]); return;
+                    }
+                    throw new Error("Erro ao buscar artistas");
+                }
+
+                const data = await response.json();
+
+                setArtists(Array.isArray(data) ? data : []);
             } catch (error) {
                 console.error("Erro ao carregar artistas:", error);
                 setArtists([]);
