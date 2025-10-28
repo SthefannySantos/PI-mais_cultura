@@ -25,9 +25,16 @@ export default function Home() {
             try {
                 const response = await fetch(`${backendUrl}/action/userEventsSubscribed/${localStorage.getItem('id')}`);
 
+                 if (!response.ok) {
+                    if (response.status === 404) {
+                        setEventsSubscribed([]); return;
+                    }
+                    throw new Error("Erro ao buscar artistas");
+                }
+
                 const events = await response.json();
 
-                setEventsSubscribed(events);
+                setEventsSubscribed(Array.isArray(events) ? events : []);
             } catch (error) {
                 console.error("Erro ao carregar eventos:", error);
                 setEventsSubscribed([]);

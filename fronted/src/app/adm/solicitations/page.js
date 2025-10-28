@@ -55,7 +55,7 @@ export default function Home() {
                         <div className="container">
                             <div className="m-0 text-center">
                                 <h1 className="fw-bolder mb-3">
-                                    Eventos <span className="mais-cultura-gradient-text">Disponíveis</span>
+                                    Solicitações <span className="mais-cultura-gradient-text">Disponíveis</span>
                                 </h1>
                             </div>
 
@@ -63,7 +63,7 @@ export default function Home() {
                             {solicitations.length === 0 ? (
                                 <div className="justify-content-center align-items-center vh-100" id="loader-div">
                                     <h3 className="text-center mt-3 text-suble text-secondary">
-                                        Não foi possível encontrar eventos disponíveis
+                                        Não foi possível encontrar solicitações
                                     </h3>
                                 </div>
                             ) : (
