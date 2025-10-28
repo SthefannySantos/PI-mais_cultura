@@ -81,7 +81,7 @@ const AdminCard = ({ evento }) => {
 
   return (
     <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>
-      <img src={imgPath} alt={evento.titulo} />
+      <img src={imgPath} style={{ maxHeight: '260px' }} alt={evento.titulo} />
 
       {/* Tag da categoria */}
       <span
