@@ -37,6 +37,8 @@
         let sql;
         let values;
 
+        console.log(titulo, descricao, local_evento, cidade, estado, categoria, artista, dt_evento, fim_inscricao, limite_participantes, map_link, nivel_solicitado, valor )
+
         if (nivel_solicitado == 2) {
             organizador = artista;
             sql = `
