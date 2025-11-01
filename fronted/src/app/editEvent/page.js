@@ -91,7 +91,7 @@ export default function EditEvent() {
 
         const formData = new FormData();
         formData.append('titulo', titulo);
-        formData.append('valor', valor);
+        formData.append('valor', String(valor));
         formData.append('descricao', descricao);
         formData.append('dt_evento', date);
         formData.append('fim_inscricao', deadline);

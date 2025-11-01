@@ -87,7 +87,7 @@ const handleSubmit = async (e) => {
 
         formData.append('titulo', titulo);
         formData.append('descricao', descricao);
-        formData.append('valor', valor);
+        formData.append('valor', String(valor));
         formData.append('dt_evento', date);
         formData.append('fim_inscricao', deadline);
         formData.append('limite_participantes', maxParticipants);
