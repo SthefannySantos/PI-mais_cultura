@@ -14,7 +14,7 @@ export default function ThemeToggle() {
 
   return (
     <button 
-      onClick={toggleTheme}
+      onClick={toggleTheme}  aria-label={`Alternar para tema ${theme === "light" ? "escuro" : "claro"}`}
       className="btn btn-primary py-2 position-fixed bottom-0 end-0 m-3"
       style={{zIndex: 9999}}
     >

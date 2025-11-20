@@ -74,10 +74,10 @@ export default function Home() {
 
                 <>
 
-                <section className="py-4" aria-label="eventsAvaliable">
+                <section className="py-4" aria-label="eventsAvaliable" style={{minHeight: '65vh'}}>
                     <div className="container">
 
-                        <div className="row justify-content-center">
+                        <div className="row justify-content-center" >
                             <div className="text-center col-lg-6 col-mb-8">
                                 
                                 <div className="cultura-card mb-4 p-4 " style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}>

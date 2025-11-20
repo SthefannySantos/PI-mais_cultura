@@ -29,7 +29,7 @@ const Card = ({ evento }) => {
 
     return(
         <div className="card border-0 rounded-5 p-0 overflow-hidden shadow h-100 card-hover" style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }} >
-            <img className="" style={{ maxHeight: '260px' }} height="" src={imgPath} alt={""} />
+            <img className="" style={{ maxHeight: '260px' }} height="" src={imgPath} alt={`Imagem do evento ${evento.titulo}`} />
     
             {/* Tag da categoria */}
             <span className="position-absolute top-0 end-0 m-3 rounded-pill px-2 text-white fw-bold"

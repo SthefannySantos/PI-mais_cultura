@@ -17,3 +17,11 @@
   color: var(--location-color) !important;
   background-color: #FFF;
 }
+
+.location-card:focus {
+  transform: translateY(-1px); /* levanta o card */
+  border-color: var(--location-color);
+  color: var(--location-color) !important;
+  background-color: #FFF;
+}
+
