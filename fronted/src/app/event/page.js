@@ -219,13 +219,17 @@ export default function Home() {
                                         <button type="button" aria-label={`Participe do nosso evento`} className="btn w-100 text-white rounded-pill fw-medium p-2 my-1 mb-4 border-0" style={{ background: "var(--mais-cultura-gradient-bg)",}} disabled={participateDisabled(event)} onClick={subscribeEvent} > Participar </button>
                                     )}
 
-                                    <a
-                                        href={`/artist?id=${artistId}`} className="link-hover" style={{color: '#8B5CF6'}}
-                                        onClick={(e) => { e.preventDefault(); router.push(`/artist?id=${artistId}`); }}
-                                    >
-                                        Ver perfil do Organizador
-                                    </a>
-
+                                    <div className="border-top pt-3 mb-4">
+                                        <h5 className="fw-bold">Organizador</h5>
+                                        <p className="fw-medium mb-2">{event.organizador_evento}</p>
+                                        {artistId && (
+                                            <a href={`/artist?id=${artistId}`} className="link-hover" style={{color: '#8B5CF6'}}
+                                            onClick={(e) => { e.preventDefault(); router.push(`/artist?id=${artistId}`); }}
+                                            >   
+                                                Ver perfil do Organizador
+                                            </a>
+                                        )}
+                                    </div>
 
                                     {event.map_link && (
                                         <div className="border-top pt-3 mb-4">
