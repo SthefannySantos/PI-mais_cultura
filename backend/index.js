@@ -3,6 +3,7 @@
     const userRoutes = require("./routes/user");
     const eventRoutes = require("./routes/events");
     const actionRoutes = require("./routes/actions");
+    const publicRoutes = require("./routes/public");
     const dotenv = require('dotenv');
     const cors = require('cors');
     const path = require('path');
@@ -21,6 +22,7 @@
     app.use('/user', userRoutes); 
     app.use('/events', eventRoutes); 
     app.use('/action', actionRoutes); 
+    app.use('/public', publicRoutes); 
 
     app.listen(process.env.PORT, '0.0.0.0', () => {
         console.log(`Server rodando em http://localhost:${process.env.PORT}`)
