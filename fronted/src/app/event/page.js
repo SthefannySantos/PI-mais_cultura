@@ -17,6 +17,137 @@ export default function Home() {
     const [eventCover, setEventCover] = useState();
     const [artistId, setArtistId] = useState(null);
 
+    const [weather, setWeather] = useState(null);
+    const [weatherLoading, setWeatherLoading] = useState(false);
+    const [weatherError, setWeatherError] = useState("");
+
+    function getDateOnly(dateString) {
+        if (!dateString) return null;
+        return new Date(dateString).toISOString().split("T")[0];
+    }
+
+    function buildEventLocation(eventData) {
+        const cidade = eventData?.cidade?.trim();
+        const estado = eventData?.estado?.trim();
+        const local = eventData?.local_evento?.trim();
+
+        if (cidade && estado) return { query: cidade, state: estado };
+        if (cidade) return { query: cidade, state: "" };
+        if (local) return { query: local, state: "" };
+
+        return null;
+    }
+
+    function weatherCodeToText(code) {
+        const map = {
+            0: "Céu limpo",
+            1: "Predominantemente limpo",
+            2: "Parcialmente nublado",
+            3: "Encoberto",
+            45: "Neblina",
+            48: "Neblina com geada",
+            51: "Garoa fraca",
+            53: "Garoa moderada",
+            55: "Garoa intensa",
+            56: "Garoa congelante fraca",
+            57: "Garoa congelante intensa",
+            61: "Chuva fraca",
+            63: "Chuva moderada",
+            65: "Chuva forte",
+            66: "Chuva congelante fraca",
+            67: "Chuva congelante forte",
+            71: "Neve fraca",
+            73: "Neve moderada",
+            75: "Neve forte",
+            77: "Grãos de neve",
+            80: "Pancadas de chuva fracas",
+            81: "Pancadas de chuva moderadas",
+            82: "Pancadas de chuva fortes",
+            85: "Pancadas de neve fracas",
+            86: "Pancadas de neve fortes",
+            95: "Trovoadas",
+            96: "Trovoadas com granizo fraco",
+            99: "Trovoadas com granizo forte"
+        };
+
+        return map[code] || "Condição climática indisponível";
+    }
+
+    async function fetchWeatherByLocationAndDate(locationData, eventDate) {
+        if (!locationData?.query || !eventDate) return null;
+
+        const dateOnly = getDateOnly(eventDate);
+
+        const geoUrl =
+            `https://geocoding-api.open-meteo.com/v1/search` +
+            `?name=${encodeURIComponent(locationData.query)}` +
+            `&count=10` +
+            `&language=pt` +
+            `&format=json` +
+            `&countryCode=BR`;
+
+        const geoResponse = await fetch(geoUrl);
+
+        if (!geoResponse.ok) {
+            throw new Error("Não foi possível localizar a cidade do evento");
+        }
+
+        const geoData = await geoResponse.json();
+
+        if (!geoData.results || geoData.results.length === 0) {
+            throw new Error("Cidade do evento não encontrada para previsão do tempo");
+        }
+
+        let place = geoData.results[0];
+
+        // tenta priorizar SP se vier informado
+        if (locationData.state) {
+            const stateUpper = locationData.state.toUpperCase();
+
+            const foundByState = geoData.results.find(item =>
+                item.admin1 &&
+                item.admin1.toUpperCase().includes(stateUpper)
+            );
+
+            if (foundByState) {
+                place = foundByState;
+            }
+        }
+
+        const { latitude, longitude, name, admin1, country } = place;
+
+        const forecastUrl =
+            `https://api.open-meteo.com/v1/forecast` +
+            `?latitude=${latitude}` +
+            `&longitude=${longitude}` +
+            `&daily=weather_code,temperature_2m_max,temperature_2m_min` +
+            `&timezone=auto` +
+            `&start_date=${dateOnly}` +
+            `&end_date=${dateOnly}`;
+
+        const forecastResponse = await fetch(forecastUrl);
+
+        if (!forecastResponse.ok) {
+            throw new Error("Não foi possível obter a previsão do evento");
+        }
+
+        const forecastData = await forecastResponse.json();
+        const day = forecastData?.daily;
+
+        if (!day || !day.time || day.time.length === 0) {
+            throw new Error("Previsão indisponível para a data do evento");
+        }
+
+        return {
+            resolvedLocation: [name, admin1, country].filter(Boolean).join(", "),
+            date: day.time[0],
+            tempMax: day.temperature_2m_max?.[0],
+            tempMin: day.temperature_2m_min?.[0],
+            weatherCode: day.weather_code?.[0],
+            description: weatherCodeToText(day.weather_code?.[0])
+        };
+    }
+
     const router = useRouter();
 
     const idUrl = useEventId();
@@ -57,7 +188,30 @@ export default function Home() {
                 setEventCover(imgPath);
                 setSubscribed(isSubscribed);
 
-                console.log('1')
+                const locationForWeather = buildEventLocation(eventFetched);
+
+                if (locationForWeather && eventFetched.dt_evento) {
+                    try {
+                        setWeatherLoading(true);
+                        setWeatherError("");
+
+                        const weatherData = await fetchWeatherByLocationAndDate(
+                            locationForWeather,
+                            eventFetched.dt_evento
+                        );
+
+                        setWeather(weatherData);
+                    } catch (err) {
+                        console.log("Erro ao buscar clima:", err);
+                        setWeather(null);
+                        setWeatherError(err.message || "Não foi possível carregar a previsão do tempo.");
+                    } finally {
+                        setWeatherLoading(false);
+                    }
+                } else {
+                    setWeather(null);
+                }
+
                 if (eventFetched.artista_cod) {
                     try {
                         const artistRes = await fetch(`${backendUrl}/action/getArtistProfile/${eventFetched.artista_cod}`);
@@ -211,6 +365,34 @@ export default function Home() {
                                     <div className="mb-3 text-center fs-5" style={{ color: "var(--card-text-muted)" }}>
                                         <i className="bi bi-tag me-1"></i>
                                         <span className="fw-medium"> {event.valor == 0 ? 'Gratuito' : `R$ ${event.valor}`}</span>
+                                    </div>
+
+                                    <div className="border-top pt-3 mb-4">
+                                        <h5 className="fw-bold mb-3">Previsão do tempo</h5>
+
+                                        {weatherLoading ? (
+                                            <p className="mb-0" style={{ color: "var(--card-text-muted)" }}>
+                                                Carregando previsão...
+                                            </p>
+                                        ) : weather ? (
+                                            <div>
+                                                <p className="mb-2" style={{ color: "var(--card-text-muted)" }}>
+                                                    {weather.resolvedLocation}
+                                                </p>
+
+                                                <p className="mb-1">
+                                                    <strong>{weather.description}</strong>
+                                                </p>
+
+                                                <p className="mb-0" style={{ color: "var(--card-text-muted)" }}>
+                                                    Mín: {Math.round(weather.tempMin)}°C • Máx: {Math.round(weather.tempMax)}°C
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <p className="mb-0" style={{ color: "var(--card-text-muted)" }}>
+                                                {weatherError || "Previsão indisponível para este evento."}
+                                            </p>
+                                        )}
                                     </div>
 
                                     {subscribed ? (
