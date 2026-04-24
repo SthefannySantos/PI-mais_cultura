@@ -26,6 +26,16 @@ const footer = () => {
                             <li className="mb-2">
                                 <Link href={'/contact'} className="text-light text-decoration-none">Contato</Link>
                             </li>
+                            <li className="mb-2">
+                                <Link href={'/api-docs'} className="text-light text-decoration-none">
+                                    Nossa API
+                                </Link>
+                            </li>
+                            <li className="mb-2">
+                                <Link href={'/PrivacyPolicy'} className="text-light text-decoration-none">
+                                    Política de privacidade
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                     <div className="col-lg-3 mb-4">
